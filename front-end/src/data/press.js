@@ -19,7 +19,7 @@ export const PRESS = [
     summary:
       'L’Orient Today calls Nadim Tarabay’s rewriting, orchestration and dramaturgical reworking of the Lebanese opera “a decisive turning point” in Arab operatic history.',
     image: antarWaAbla,
-    url: null,
+    url: 'https://today.lorientlejour.com/article/1488463/antar-wa-abla-in-abu-dhabi-lebanese-opera-makes-its-way-to-the-international-stage.html',
   },
   {
     slug: 'standing-ovation-the-beginning-emirates-palace',
@@ -29,7 +29,7 @@ export const PRESS = [
     summary:
       'The UAE National Orchestra’s Landmark Debut. Tarabay’s The Beginning — An Emirati Symphony closes the inaugural concert, attended by Sheikh Abdullah bin Zayed Al Nahyan.',
     image: emiratesPalace,
-    url: null,
+    url: 'https://en.aletihad.ae/news/uae/4637703/abdullah-bin-zayed-attends-uae-national-orchestra-s-landmark',
   },
   {
     slug: 'echoes-of-time-ibn-arabi-aletihad',
@@ -39,7 +39,7 @@ export const PRESS = [
     summary:
       'Aletihad previews the world premiere of Nadim Tarabay’s symphonic setting of seven poems by the Sufi mystic, conducted by Ahmed Farag at NYU Abu Dhabi’s Arts Centre on 25 February 2026.',
     image: echoesCover,
-    url: null,
+    url: 'https://en.aletihad.ae/amp/news/culture/4646973/uae-national-orchestra-sets-the-poetry-of-ibn-arabi-to-music',
   },
   {
     slug: 'the-beginning-tours-the-emirates',
@@ -49,7 +49,7 @@ export const PRESS = [
     summary:
       'Starting in Abu Dhabi, the tour went on to Dubai, Al Ain, Fujairah and Ras Al Khaimah before closing in Sharjah, reaching more than 3,500 people. At its centre was the world premiere of Nadim Tarabay’s Emirati Symphony.',
     image: heroImage,
-    url: null,
+    url: 'https://gates-dubai.com/en/article/8357',
   },
   {
     slug: 'second-prize-sinfonietta-en-spirale',
@@ -60,7 +60,7 @@ export const PRESS = [
     summary:
       'Aletihad announces the winners of the first Abu Dhabi International Competition for Composition, organised by the Abu Dhabi Festival. Nadim Tarabay took Second Prize in the orchestra category for Sinfonietta en Spirale.',
     image: competition,
-    url: null,
+    url: 'https://en.aletihad.ae/news/culture/4635775/abu-dhabi-festival-announces-winners-of-inaugural-abu-dhabi',
   },
 ];
 
