@@ -1,12 +1,10 @@
 import heroImage from '@/pictures/images/home-hero.webp';
-import heroImageMobile from '@/pictures/images/home-hero-mobile.webp';
 
 export const HOME_HERO = Object.freeze({
   firstName: 'Nadim',
   lastName: 'Tarabay',
   image: {
     src: heroImage,
-    mobileSrc: heroImageMobile,
     alt: 'Nadim Tarabay applauding the orchestra on stage',
   },
   description: 'Award winning international Lebanese composer of contemporary classical music.',
