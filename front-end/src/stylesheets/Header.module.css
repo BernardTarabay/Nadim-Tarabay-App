@@ -83,57 +83,38 @@
   color: var(--color-white);
 }
 
-.mega {
+.item {
+  position: relative;
+}
+
+.dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  padding: 24px var(--gutter) 48px;
+  /* The item is centred in the bar, so this lands the panel flush under it. */
+  top: calc(50% + var(--header-h) / 2);
+  left: -20px;
+  min-width: 200px;
+  padding: 20px;
   background: var(--color-nav);
   box-shadow: var(--shadow-menu);
 }
 
-.megaOpen {
+.dropdownOpen {
   animation: drop-in var(--dur) var(--ease);
 }
 
-.megaGrid {
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-}
-
-.megaColumn {
+.dropdownLinks {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 180px;
 }
 
-.megaHeading {
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14px;
-  color: var(--color-muted);
-}
-
-a.megaHeading:hover {
-  color: var(--color-cream);
-}
-
-.megaLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.megaLink {
+.dropdownLink {
   font-size: 14px;
   line-height: 16px;
   color: var(--color-cream);
 }
 
-.megaLink:hover {
+.dropdownLink:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -160,8 +141,7 @@ a.megaHeading:hover {
     color: var(--color-white);
   }
 
-  .desktopNav,
-  .mega {
+  .desktopNav {
     display: none;
   }
 

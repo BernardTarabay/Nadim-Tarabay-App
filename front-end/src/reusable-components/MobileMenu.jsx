@@ -25,7 +25,9 @@ export default function MobileMenu({ id, items, open, onClose }) {
                 className={styles.mobileToggle}
                 aria-expanded={expanded === item.label}
                 aria-controls={`${panelId}-${item.label}`}
-                onClick={() => setExpanded((current) => (current === item.label ? null : item.label))}
+                onClick={() =>
+                  setExpanded((current) => (current === item.label ? null : item.label))
+                }
               >
                 {item.label}
                 <Icon name="chevron-down" className={styles.chevron} />

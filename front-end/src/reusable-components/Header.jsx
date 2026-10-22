@@ -4,7 +4,7 @@ import Icon from '@/reusable-components/Icon';
 import ContactButton from '@/reusable-components/ContactButton';
 import { useModal } from '@/hooks/useModal';
 import { NAV, PATHS, SITE } from '@/config/site';
-import MegaMenu from './MegaMenu';
+import NavDropdown from './NavDropdown';
 import MobileMenu from './MobileMenu';
 import styles from '../stylesheets/Header.module.css';
 
@@ -15,13 +15,14 @@ export default function Header() {
   const location = useLocation();
   const { pathname } = location;
   const headerRef = useRef(null);
-  const megaId = useId();
+  const menuId = useId();
   const mobileId = useId();
   const [openIndex, setOpenIndex] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [focusColumn, setFocusColumn] = useState(null);
 
   const [locationKey, setLocationKey] = useState(location.key);
+  const clearFocus = useCallback(() => setFocusColumn(null), []);
 
   const closeAll = useCallback(() => {
     setOpenIndex(null);
@@ -101,13 +102,13 @@ export default function Header() {
                 );
               }
               return (
-                <li key={item.label}>
+                <li key={item.label} className={styles.item}>
                   <button
                     type="button"
                     data-nav-index={index}
                     className={`${styles.link} ${highlighted ? styles.active : ''}`}
                     aria-expanded={openIndex === index}
-                    aria-controls={megaId}
+                    aria-controls={`${menuId}-${index}`}
                     aria-current={current ? 'true' : undefined}
                     onPointerEnter={(event) => event.pointerType === 'mouse' && setOpenIndex(index)}
                     onClick={(event) => onTriggerClick(event, index)}
@@ -116,6 +117,13 @@ export default function Header() {
                     {item.label}
                     <Icon name="chevron-down" className={styles.chevron} />
                   </button>
+                  <NavDropdown
+                    id={`${menuId}-${index}`}
+                    item={item}
+                    open={openIndex === index}
+                    focusFirst={focusColumn === index}
+                    onFocused={clearFocus}
+                  />
                 </li>
               );
             })}
@@ -135,13 +143,6 @@ export default function Header() {
         </button>
       </div>
 
-      <MegaMenu
-        id={megaId}
-        items={NAV}
-        open={openIndex !== null}
-        focusColumn={focusColumn}
-        onFocused={() => setFocusColumn(null)}
-      />
       <MobileMenu
         id={mobileId}
         items={NAV}
