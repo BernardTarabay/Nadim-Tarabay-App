@@ -1,0 +1,93 @@
+.book {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 330px;
+  margin-bottom: 6px;
+  background: var(--color-surface);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.cover {
+  height: 300px;
+  width: auto;
+  max-width: 90%;
+  object-fit: contain;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.12);
+  transition: transform var(--dur) var(--ease);
+}
+
+.play {
+  position: absolute;
+  color: var(--color-white);
+  filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.4));
+  pointer-events: none;
+}
+
+.book:hover .cover,
+.selected .cover {
+  transform: translateY(-4px);
+}
+
+.selected .stage {
+  background: #f0eeea;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-ink);
+}
+
+.button {
+  text-align: left;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.button:focus-visible {
+  outline: none;
+}
+
+.book:has(.button:focus-visible) {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 4px;
+}
+
+.meta {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--color-muted-strong);
+}
+
+@media (max-width: 767px) {
+  .book {
+    gap: 4px;
+  }
+
+  .stage {
+    margin-bottom: 12px;
+  }
+
+  .title {
+    line-height: 23px;
+  }
+
+  .meta {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

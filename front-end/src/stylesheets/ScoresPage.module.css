@@ -1,0 +1,147 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 48px;
+  padding-bottom: 162px;
+}
+
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.filters {
+  overflow-x: auto;
+}
+
+.introText {
+  max-width: 780px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 4px;
+}
+
+.position {
+  white-space: nowrap;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.pagerButton {
+  display: flex;
+  color: var(--color-ink);
+}
+
+.pagerButton:disabled {
+  color: var(--color-muted-strong);
+  cursor: default;
+}
+
+.collection {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+}
+
+.open {
+  grid-template-columns: minmax(0, 1fr) 504px;
+  margin-right: calc(-1 * var(--gutter));
+}
+
+.library {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px 20px;
+  align-content: start;
+}
+
+.open .library {
+  column-gap: 32px;
+}
+
+@media (max-width: 1199px) {
+  .open .library {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1023px) {
+  .open {
+    grid-template-columns: minmax(0, 1fr) 380px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page {
+    gap: 0;
+    padding-block: 32px 48px;
+  }
+
+  .intro {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 24px;
+  }
+
+  .filters {
+    padding-bottom: 24px;
+  }
+
+  .introText {
+    font-size: 18px;
+  }
+
+  .pager {
+    gap: 12px;
+    padding: 0;
+  }
+
+  .position {
+    font-family: var(--font-sans);
+    line-height: 16px;
+  }
+
+  .pagerButton {
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+
+  .pagerButton:disabled {
+    background: var(--color-field);
+    color: var(--color-ink);
+  }
+
+  .pagerButton svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .open,
+  .collection {
+    grid-template-columns: minmax(0, 1fr);
+    margin-right: 0;
+  }
+
+  .library,
+  .open .library {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}

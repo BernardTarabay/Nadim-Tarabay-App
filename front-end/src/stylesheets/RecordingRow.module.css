@@ -1,0 +1,50 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr 120px 168px;
+  grid-template-areas: 'title duration play';
+  align-items: center;
+  column-gap: 32px;
+  padding-block: 15.75px;
+  border-bottom: 0.5px solid rgb(0 0 0 / 0.7);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.title {
+  grid-area: title;
+}
+
+.duration {
+  grid-area: duration;
+}
+
+.play {
+  grid-area: play;
+  justify-self: end;
+}
+
+@media (max-width: 767px) {
+  .row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'title play'
+      'duration play';
+    column-gap: 6px;
+    row-gap: 6px;
+    padding-block: 16px;
+  }
+
+  .title {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .play {
+    padding: 11px 7px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

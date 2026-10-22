@@ -1,0 +1,108 @@
+.episode {
+  position: relative;
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.3);
+}
+
+.guest {
+  font-weight: 700;
+}
+
+.slide {
+  height: 100%;
+}
+
+.slide .media {
+  position: absolute;
+  inset: 0;
+}
+
+.slide .media::after {
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0), rgb(0 0 0 / 0.7)), rgb(0 0 0 / 0.3);
+}
+
+.slide .details {
+  position: absolute;
+  inset: auto 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.slide .text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slide .guest {
+  font-size: 40px;
+  line-height: 44px;
+}
+
+.slide .title {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.slide .watch {
+  color: var(--color-black);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card .media {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.card .text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card .details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card .guest {
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--color-heading);
+}
+
+.card .title {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.card .watch {
+  width: 100%;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--color-white);
+  background: var(--color-black);
+}

@@ -1,0 +1,25 @@
+.window {
+  display: inline-flex;
+  flex: none;
+  width: 26px;
+  height: 23px;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  transform: translateX(-26px);
+  transition: transform var(--dur) var(--ease);
+}
+
+.track svg {
+  flex: none;
+}
+
+:global([data-arrow-host]):is(:hover, :focus-within) .track {
+  transform: translateX(0);
+}
+
+.left {
+  transform: scaleX(-1);
+}

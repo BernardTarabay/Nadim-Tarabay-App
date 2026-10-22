@@ -1,0 +1,271 @@
+.panel {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  align-self: start;
+  max-height: calc(100dvh - var(--header-h) - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px;
+  border-radius: var(--radius-sm);
+  background: var(--color-nav);
+  color: var(--color-white);
+  outline: none;
+  animation: slide-in var(--dur) var(--ease);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--color-muted);
+}
+
+.back svg {
+  color: var(--color-cream);
+}
+
+.back:hover,
+.close:hover {
+  color: var(--color-cream);
+}
+
+.close {
+  display: flex;
+  color: var(--color-muted);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 36px;
+}
+
+.meta {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--color-muted);
+}
+
+.preview {
+  width: 100%;
+  aspect-ratio: 456 / 306;
+  object-fit: cover;
+}
+
+.credit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.creditTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.creditName {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconButton {
+  display: flex;
+  flex: none;
+  color: var(--color-white);
+}
+
+.iconButton:last-child {
+  color: var(--color-cream);
+}
+
+.progress {
+  flex: 1;
+  min-width: 0;
+  height: 8px;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+.progress:disabled {
+  cursor: default;
+}
+
+.progress::-webkit-slider-runnable-track {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--color-white) var(--progress),
+    #343438 var(--progress)
+  );
+}
+
+.progress::-moz-range-track {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--color-white) var(--progress),
+    #343438 var(--progress)
+  );
+}
+
+.progress::-webkit-slider-thumb {
+  width: 8px;
+  height: 8px;
+  margin-top: -3px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-cream);
+  appearance: none;
+}
+
+.progress::-moz-range-thumb {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-cream);
+}
+
+.time {
+  flex: none;
+  min-width: 52px;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--color-muted);
+}
+
+.fullscreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 66px;
+  border: 1px solid #343438;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--color-muted);
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.fullscreen:hover {
+  border-color: var(--color-muted);
+  color: var(--color-cream);
+}
+
+.backdrop {
+  display: none;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+}
+
+@media (max-width: 767px) {
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: rgb(0 0 0 / 0.3);
+  }
+
+  .panel {
+    position: fixed;
+    top: calc(var(--header-h) + 16px);
+    left: 0;
+    right: 0;
+    z-index: 160;
+    max-height: calc(100dvh - var(--header-h) - 32px);
+    overflow-y: auto;
+    gap: 25px;
+    padding: 19px;
+    border-radius: 6px;
+    animation-name: rise;
+  }
+
+  .title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .heading {
+    gap: 9px;
+  }
+
+  .credit {
+    gap: 6px;
+  }
+
+  .creditTitle {
+    line-height: 16px;
+  }
+
+  .creditName {
+    line-height: 16px;
+  }
+
+  .transport {
+    gap: 9px;
+  }
+
+  .time {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .description {
+    font-size: 12px;
+    line-height: 19px;
+  }
+
+  .fullscreen {
+    height: 51px;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}

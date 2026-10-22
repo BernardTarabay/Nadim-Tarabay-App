@@ -1,0 +1,275 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-top: 80px;
+  padding-bottom: 100px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 68px;
+}
+
+.heroLogo {
+  width: 108px;
+  height: 134px;
+}
+
+.story {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.storyColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'first second'
+    'image image';
+  gap: 24px 20px;
+}
+
+.storyColumns > :first-child {
+  grid-area: first;
+}
+
+.storyColumns > :last-child {
+  grid-area: second;
+}
+
+.storyImage {
+  grid-area: image;
+  width: 100%;
+  height: 590px;
+  object-fit: cover;
+}
+
+.conversations {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.conversationsIntro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.bleed {
+  margin-inline: calc(-1 * var(--gutter));
+}
+
+.episodeList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.personRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.personText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 591px;
+}
+
+.personText .title {
+  max-width: 519px;
+}
+
+.hostPhoto {
+  --polaroid-bottom: 60px;
+  width: min(586px, 50%);
+  height: 590px;
+  margin-left: auto;
+  box-shadow: 0 0 25px rgb(20 20 20 / 0.07);
+}
+
+@media (max-width: 1023px) {
+  .personRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hostPhoto {
+    width: min(586px, 100%);
+    height: auto;
+    aspect-ratio: 586 / 590;
+    margin-left: 0;
+  }
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 694px;
+  position: relative;
+  isolation: isolate;
+  padding: 48px 24px;
+  background: var(--color-nav);
+  color: var(--color-white);
+  text-align: center;
+}
+
+.ctaBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(0 0 0 / 0.8);
+}
+
+.ctaLogo {
+  width: 108px;
+  height: 134px;
+}
+
+.ctaTitle {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 44px;
+}
+
+.ctaText {
+  max-width: 591px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.ctaButton {
+  margin-top: 24px;
+}
+
+@media (max-width: 767px) {
+  .page {
+    gap: 0;
+    padding-top: 48px;
+    padding-bottom: 0;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 36px;
+    color: var(--color-heading);
+  }
+
+  .heroLogo {
+    width: 72px;
+    height: 90px;
+  }
+
+  .story {
+    gap: 16px;
+    padding-bottom: 48px;
+  }
+
+  .storyColumns {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .storyImage {
+    height: 240px;
+  }
+
+  .conversations {
+    gap: 32px;
+    padding-bottom: 48px;
+  }
+
+  .conversationsIntro {
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .person {
+    gap: 32px;
+    padding-bottom: 40px;
+  }
+
+  .personRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .personText {
+    display: contents;
+  }
+
+  .personText .title {
+    order: 1;
+    max-width: none;
+    margin-bottom: 8px;
+  }
+
+  .hostPhoto {
+    order: 2;
+  }
+
+  .personText > :last-child {
+    order: 3;
+  }
+
+  .hostPhoto {
+    --polaroid-pad: 0px;
+    --polaroid-bottom: 0px;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .hostPhoto {
+    height: 280px;
+  }
+
+  .cta {
+    min-height: 357px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 40px var(--gutter);
+  }
+
+  .ctaLogo {
+    width: 72px;
+    height: 90px;
+  }
+
+  .ctaTitle {
+    font-size: 28px;
+    line-height: 33px;
+  }
+
+  .ctaButton {
+    margin-top: 8px;
+  }
+}

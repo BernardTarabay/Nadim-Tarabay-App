@@ -1,0 +1,68 @@
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-ink: #0e0d0f;
+  --color-heading: #0f172a;
+  --color-nav: #0b0b0d;
+  --color-cream: #f2eee8;
+  --color-muted: #8a8a8f;
+  --color-muted-strong: #737378;
+  --color-surface: #fafafa;
+  --color-field: #f4f4f4;
+  --color-border: #e5e5e5;
+  --color-on-dark-70: rgb(255 255 255 / 0.7);
+  --color-on-dark-40: rgb(255 255 255 / 0.4);
+  --color-on-dark-25: rgb(255 255 255 / 0.25);
+  --color-on-dark-20: rgb(255 255 255 / 0.2);
+  --color-on-dark-10: rgb(255 255 255 / 0.1);
+  --color-on-dark-6: rgb(255 255 255 / 0.06);
+  --color-on-dark-5: rgb(255 255 255 / 0.05);
+  --color-error: #ff8a8a;
+  --color-success: #9fe0b5;
+
+  --font-sans: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Agrandir', 'Roboto', system-ui, sans-serif;
+  --font-ui: 'Inter', 'Roboto', system-ui, sans-serif;
+  --font-arabic: 'Noto Naskh Arabic', 'Roboto', serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 0 25px rgb(20 20 20 / 0.05);
+  --shadow-menu: 0 10px 30px rgb(0 0 0 / 0.25);
+
+  --gutter: 100px;
+  --header-h: 72px;
+  --mini-player-h: 56px;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 150ms;
+  --dur: 250ms;
+}
+
+@media (max-width: 1439px) {
+  :root {
+    --gutter: clamp(32px, calc(32px + (100vw - 768px) * 68 / 672), 100px);
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --header-h: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+  }
+}

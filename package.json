@@ -1,0 +1,18 @@
+{
+  "name": "nadim-tarabay",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "front-end",
+    "back-end"
+  ],
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "dev": "npm run dev -w front-end",
+    "build": "npm run build -w front-end",
+    "lint": "npm run lint -w front-end",
+    "format": "prettier --write front-end/src back-end shared api"
+  }
+}

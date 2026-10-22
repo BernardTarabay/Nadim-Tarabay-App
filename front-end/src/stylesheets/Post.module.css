@@ -1,0 +1,197 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 61px 0 80px;
+}
+
+.lead {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.lead > :first-child {
+  margin-bottom: -24px;
+}
+
+.title {
+  max-width: 870px;
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 104px;
+}
+
+.meta {
+  margin-top: -24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgb(0 0 0 / 0.7);
+}
+
+.leadMedia {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gallery {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.leadGallery {
+  height: 590px;
+}
+
+.band {
+  padding-block: 40px;
+  background: var(--color-field);
+}
+
+.sectionTitle {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 68px;
+}
+
+.story,
+.feature {
+  display: flex;
+  flex-direction: column;
+}
+
+.story {
+  gap: 24px;
+}
+
+.story .sectionText {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.story .sectionText > :last-child {
+  width: 487px;
+  flex: none;
+}
+
+.story .sectionGallery {
+  height: 590px;
+}
+
+.feature {
+  gap: 40px;
+  align-items: center;
+}
+
+.feature .sectionText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 936px;
+  text-align: center;
+}
+
+.feature .sectionTitle {
+  max-width: 636px;
+}
+
+.feature .sectionGallery {
+  width: 100%;
+  height: 400px;
+  gap: 16px;
+}
+
+@media (max-width: 767px) {
+  .post {
+    gap: 0;
+    padding: 40px 0 0;
+  }
+
+  .lead {
+    gap: 24px;
+    padding-bottom: 48px;
+  }
+
+  .lead > :first-child {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .meta {
+    margin-top: 0;
+    font-size: 14px;
+  }
+
+  .leadMedia {
+    gap: 24px;
+  }
+
+  .gallery {
+    grid-auto-flow: row;
+  }
+
+  .leadGallery,
+  .story .sectionGallery {
+    height: auto;
+  }
+
+  .leadGallery img,
+  .story .sectionGallery img {
+    height: 240px;
+  }
+
+  .band {
+    padding: 24px 0 40px;
+  }
+
+  .story,
+  .feature {
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .story .sectionText {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .story .sectionText > :last-child {
+    width: auto;
+  }
+
+  .sectionTitle,
+  .feature .sectionTitle {
+    max-width: none;
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .feature .sectionText {
+    align-items: stretch;
+    gap: 24px;
+    text-align: left;
+  }
+
+  .feature .sectionGallery {
+    height: auto;
+  }
+
+  .feature .sectionGallery img {
+    height: 400px;
+  }
+}

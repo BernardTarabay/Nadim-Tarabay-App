@@ -1,0 +1,14 @@
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-top: 53px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 767px) {
+  .sections {
+    gap: 48px;
+    padding-block: 48px;
+  }
+}

@@ -1,0 +1,14 @@
+.prose {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.prose p + p {
+  margin-top: 1lh;
+}
+
+@media (max-width: 767px) {
+  .prose {
+    font-size: 14px;
+  }
+}
