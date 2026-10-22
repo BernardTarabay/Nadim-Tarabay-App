@@ -195,17 +195,30 @@ a.megaHeading:hover {
   gap: 16px;
 }
 
-.mobileLabel {
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14px;
-  color: var(--color-muted);
+.mobileToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: left;
+  color: var(--color-cream);
+}
+
+.mobileToggle[aria-expanded='true'] .chevron {
+  transform: rotate(180deg);
 }
 
 .mobileLinks {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.mobileLinks[hidden] {
+  display: none;
 }
 
 .mobileLink {

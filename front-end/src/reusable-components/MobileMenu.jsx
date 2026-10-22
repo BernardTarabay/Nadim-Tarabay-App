@@ -1,18 +1,47 @@
+import { useId, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ContactButton from '@/reusable-components/ContactButton';
+import Icon from '@/reusable-components/Icon';
 import styles from '../stylesheets/Header.module.css';
 
 export default function MobileMenu({ id, items, open, onClose }) {
+  const panelId = useId();
+  const [expanded, setExpanded] = useState(null);
+  const [wasOpen, setWasOpen] = useState(open);
+
+  if (wasOpen !== open) {
+    setWasOpen(open);
+    if (!open) setExpanded(null);
+  }
+
   return (
     <div id={id} className={styles.mobileMenu} hidden={!open}>
       <nav aria-label="Main" className={styles.mobileNav}>
         {items.map((item) =>
           item.children ? (
             <section key={item.label} className={styles.mobileGroup}>
-              <h2 className={styles.mobileLabel}>
-                {item.to ? <Link to={item.to}>{item.label}</Link> : item.label}
-              </h2>
-              <ul className={styles.mobileLinks}>
+              <button
+                type="button"
+                className={styles.mobileToggle}
+                aria-expanded={expanded === item.label}
+                aria-controls={`${panelId}-${item.label}`}
+                onClick={() => setExpanded((current) => (current === item.label ? null : item.label))}
+              >
+                {item.label}
+                <Icon name="chevron-down" className={styles.chevron} />
+              </button>
+              <ul
+                id={`${panelId}-${item.label}`}
+                className={styles.mobileLinks}
+                hidden={expanded !== item.label}
+              >
+                {item.to && (
+                  <li>
+                    <Link to={item.to} className={styles.mobileLink}>
+                      All {item.label}
+                    </Link>
+                  </li>
+                )}
                 {item.children.map((child) => (
                   <li key={child.label}>
                     <Link to={child.to} className={styles.mobileLink}>
