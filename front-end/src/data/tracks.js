@@ -1,9 +1,9 @@
 export const audioSrc = (file) => `/audio/${file}`;
 
 export const DEFAULT_TRACK = Object.freeze({
-  id: 'experience',
-  title: 'Experience',
-  subtitle: 'Theme',
-  src: audioSrc('experience.mp3'),
+  id: 'the-beginning',
+  title: 'The Beginning',
+  subtitle: 'An Emirati Symphony',
+  src: audioSrc('the-beginning.m4a'),
   loop: true,
 });
