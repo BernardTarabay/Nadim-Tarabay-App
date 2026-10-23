@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigation } from 'react-router-dom';
 import Icon from '@/reusable-components/Icon';
 import ContactButton from '@/reusable-components/ContactButton';
 import { useModal } from '@/hooks/useModal';
@@ -14,6 +14,7 @@ const isCurrent = (item, pathname) =>
 export default function Header() {
   const location = useLocation();
   const { pathname } = location;
+  const navigation = useNavigation();
   const headerRef = useRef(null);
   const menuId = useId();
   const mobileId = useId();
@@ -77,7 +78,7 @@ export default function Header() {
       onPointerLeave={(event) => event.pointerType === 'mouse' && setOpenIndex(null)}
     >
       <div className={styles.bar}>
-        <Link to={PATHS.home} className={styles.brand}>
+        <Link to={PATHS.home} className={styles.brand} viewTransition>
           {SITE.name}
         </Link>
 
@@ -95,6 +96,7 @@ export default function Header() {
                       onPointerEnter={(event) =>
                         event.pointerType === 'mouse' && setOpenIndex(null)
                       }
+                      viewTransition
                     >
                       {item.label}
                     </NavLink>
@@ -139,8 +141,17 @@ export default function Header() {
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           onClick={() => setMobileOpen((open) => !open)}
         >
-          <Icon name={mobileOpen ? 'close' : 'menu'} />
+          <Icon
+            key={mobileOpen ? 'close' : 'menu'}
+            name={mobileOpen ? 'close' : 'menu'}
+            className={styles.menuIcon}
+          />
         </button>
+        <span
+          className={styles.progress}
+          data-active={navigation.state === 'loading'}
+          aria-hidden="true"
+        />
       </div>
 
       <MobileMenu

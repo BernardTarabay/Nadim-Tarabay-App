@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import SlideArrow from '@/reusable-components/SlideArrow';
 import { formatDate, readingTime } from '@/utils/text';
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/NewsRow.module.css';
 
 export default function NewsRow({ article, to }) {
   return (
-    <article className={styles.row} data-arrow-host>
+    <article ref={reveal} className={styles.row} data-arrow-host>
       <img className={styles.image} src={article.listImage} alt="" loading="lazy" />
       <div className={styles.details}>
         <div className={styles.meta}>
@@ -18,7 +19,7 @@ export default function NewsRow({ article, to }) {
           </span>
         </div>
         <h2 className={styles.title}>
-          <Link to={to} className={styles.link}>
+          <Link to={to} className={styles.link} viewTransition>
             {article.title}
           </Link>
         </h2>

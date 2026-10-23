@@ -1,5 +1,6 @@
 import BackLink from '@/reusable-components/BackLink';
 import Prose from '@/reusable-components/Prose';
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/Post.module.css';
 
 function Gallery({ images, className }) {
@@ -14,7 +15,7 @@ function Gallery({ images, className }) {
 
 function Section({ section }) {
   const inner = (
-    <section className={`l-container ${styles[section.type]}`}>
+    <section ref={reveal} className={`l-container ${styles[section.type]}`}>
       <div className={styles.sectionText}>
         <h2 className={styles.sectionTitle}>{section.title}</h2>
         <Prose paragraphs={section.paragraphs} />

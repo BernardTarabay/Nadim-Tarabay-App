@@ -75,6 +75,7 @@
   font-family: var(--font-display);
   font-weight: 700;
   text-decoration: underline;
+  transition: color var(--dur-fast) var(--ease);
 }
 
 .email a:hover {
@@ -120,6 +121,10 @@
   max-width: none;
 }
 
+.control:hover {
+  border-color: var(--color-on-dark-70);
+}
+
 .control:focus-within {
   border-color: var(--color-white);
 }
@@ -157,6 +162,11 @@
   position: relative;
   border-radius: var(--radius-sm);
   background: var(--color-on-dark-20);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.select:hover {
+  background: var(--color-on-dark-25);
 }
 
 .select:focus-within {
@@ -197,6 +207,7 @@
   font-size: 13px;
   line-height: 16px;
   color: var(--color-error);
+  animation: message-in var(--dur) var(--ease-out);
 }
 
 .footer {
@@ -227,6 +238,18 @@
 
 .failure {
   color: var(--color-error);
+}
+
+.success,
+.failure {
+  animation: message-in var(--dur) var(--ease-out);
+}
+
+@keyframes message-in {
+  from {
+    opacity: 0;
+    translate: 0 -4px;
+  }
 }
 
 @media (max-width: 767px) {

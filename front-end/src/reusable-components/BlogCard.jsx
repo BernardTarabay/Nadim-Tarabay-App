@@ -1,10 +1,11 @@
 import Button from '@/reusable-components/Button';
 import { formatDate } from '@/utils/text';
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/BlogCard.module.css';
 
 export default function BlogCard({ post, to }) {
   return (
-    <article className={styles.card}>
+    <article ref={reveal} className={styles.card}>
       <img className={styles.image} src={post.cover} alt="" loading="lazy" />
       <div className={styles.text}>
         <time dateTime={post.date} className={styles.date}>

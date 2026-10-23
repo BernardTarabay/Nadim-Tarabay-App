@@ -32,23 +32,45 @@
   display: var(--np-subtitle, none);
 }
 
+/* Both are keyed on what they show, so a new status or track fades in rather than snapping. */
+.status,
+.title {
+  animation: label-in var(--dur) var(--ease-out);
+}
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+  }
+}
+
 .toggle {
   flex: none;
   font-size: var(--np-toggle-size, 16px);
   line-height: var(--np-toggle-lh, 20px);
   color: var(--color-cream);
   text-align: right;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition:
+    text-decoration-color var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
 }
 
 .toggle:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration-color: currentColor;
+}
+
+.toggle:active {
+  scale: var(--press-scale);
 }
 
 .wave {
   display: inline-flex;
   flex: none;
   color: var(--color-white);
+  transition: opacity var(--dur) var(--ease);
 }
 
 .waveDesktop {
@@ -210,4 +232,13 @@
   padding-inline: var(--gutter);
   border-top: 1px solid #26242a;
   background: #1c1a1f;
+  /* Held in place during page transitions; slides up when it first appears. */
+  view-transition-name: mini-player;
+  animation: mini-in var(--dur-slow) var(--ease-out);
+}
+
+@keyframes mini-in {
+  from {
+    translate: 0 100%;
+  }
 }

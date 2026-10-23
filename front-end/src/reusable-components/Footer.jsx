@@ -43,7 +43,7 @@ export default function Footer() {
           <ul className={styles.pageLinks} style={{ '--rows': Math.ceil(FOOTER.pages.length / 2) }}>
             {FOOTER.pages.map((page) => (
               <li key={page.to}>
-                <Link to={page.to} className={styles.pageLink}>
+                <Link to={page.to} className={styles.pageLink} viewTransition>
                   {page.label}
                 </Link>
               </li>

@@ -6,12 +6,13 @@ import {
   thumbnailUrl,
   videoUrl,
 } from '@/data/zagharidEpisodes';
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/EpisodeArchive.module.css';
 
 export default function EpisodeArchive({ id, title, description }) {
   return (
     <section className={styles.archive} aria-labelledby={id}>
-      <header className={styles.header}>
+      <header ref={reveal} className={styles.header}>
         <h2 id={id} className={styles.title}>
           {title}
         </h2>
@@ -29,7 +30,7 @@ export default function EpisodeArchive({ id, title, description }) {
 
       <ul className={styles.grid}>
         {ZAGHARID_EPISODES.map((episode) => (
-          <li key={episode.id} className={styles.card}>
+          <li key={episode.id} ref={reveal} className={styles.card}>
             <VideoPlayer
               compact
               youtubeId={episode.youtubeId}

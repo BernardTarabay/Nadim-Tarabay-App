@@ -3,6 +3,7 @@ import SectionHeader from '@/reusable-components/SectionHeader';
 import VideoPlayer from '@/reusable-components/VideoPlayer';
 import { ADS } from '@/data/ads';
 import { PATHS } from '@/config/site';
+import { reveal } from '@/utils/reveal';
 import styles from '../../stylesheets/AdsPage.module.css';
 
 const watchUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
@@ -60,7 +61,7 @@ export default function AdsPage() {
         {featured.stills.length > 0 && (
           <ul className={styles.stills} aria-label="Stills">
             {featured.stills.map((still) => (
-              <li key={still.src}>
+              <li key={still.src} ref={reveal}>
                 <img src={still.src} alt={still.alt} className={styles.still} loading="lazy" />
               </li>
             ))}
@@ -72,7 +73,7 @@ export default function AdsPage() {
             <SectionHeader id="more-films" title="More films" />
             <ul className={styles.grid}>
               {more.map((ad) => (
-                <li key={ad.id} className={styles.card}>
+                <li key={ad.id} ref={reveal} className={styles.card}>
                   <VideoPlayer
                     youtubeId={ad.youtubeId}
                     title={`${ad.title}: ${ad.kind}`}

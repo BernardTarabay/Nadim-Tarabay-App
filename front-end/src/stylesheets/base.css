@@ -6,15 +6,12 @@
   box-sizing: border-box;
 }
 
+/* No smooth scroll-behavior here: it would also animate the jump to the top on every page change.
+   The scrolls that should glide (e.g. "Get in touch") ask for it themselves. */
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: var(--header-h);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+  scroll-padding-bottom: var(--mini-player-h);
 }
 
 body {
@@ -118,4 +115,52 @@ button {
 
 .skip-link:focus {
   top: 16px;
+}
+
+/* Reveal on scroll: see utils/reveal.js. Hidden only where the reveal will actually play. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  [data-reveal=''] {
+    opacity: 0;
+  }
+
+  [data-reveal='in'] {
+    animation: reveal var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms) backwards;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise);
+  }
+}
+
+/* Page changes: the old page crossfades into the new one, which rises slightly into place.
+   Both fades share one duration and curve so their opacities always add up to a full frame. */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: var(--dur);
+  animation-timing-function: var(--ease);
+}
+
+::view-transition-old(root) {
+  animation-name: page-out;
+}
+
+::view-transition-new(root) {
+  animation-name: page-in;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    translate: 0 calc(var(--rise) / 2);
+  }
 }

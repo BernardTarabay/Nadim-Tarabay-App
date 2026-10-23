@@ -42,8 +42,10 @@ export function TrackLabel() {
   const { currentTrack, status } = useAudioPlayer();
   return (
     <span className={styles.track} aria-live="polite">
-      <span className={styles.status}>{STATUS_LABEL[status]}</span>{' '}
-      <span className={styles.title}>
+      <span key={STATUS_LABEL[status]} className={styles.status}>
+        {STATUS_LABEL[status]}
+      </span>{' '}
+      <span key={currentTrack?.id} className={styles.title}>
         {currentTrack?.title}
         {currentTrack?.subtitle && (
           <span className={styles.subtitle}> ({currentTrack.subtitle})</span>

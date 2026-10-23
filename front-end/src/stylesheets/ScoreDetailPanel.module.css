@@ -14,7 +14,7 @@
   background: var(--color-nav);
   color: var(--color-white);
   outline: none;
-  animation: slide-in var(--dur) var(--ease);
+  animation: slide-in var(--dur-slow) var(--ease-out);
 }
 
 .nav {
@@ -30,10 +30,16 @@
   font-size: 12px;
   line-height: 14px;
   color: var(--color-muted);
+  transition: color var(--dur-fast) var(--ease);
 }
 
 .back svg {
   color: var(--color-cream);
+  transition: translate var(--dur) var(--ease);
+}
+
+.back:hover svg {
+  translate: -2px 0;
 }
 
 .back:hover,
@@ -44,6 +50,13 @@
 .close {
   display: flex;
   color: var(--color-muted);
+  transition:
+    color var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
+}
+
+.close:active {
+  scale: var(--press-scale);
 }
 
 .heading {
@@ -98,10 +111,43 @@
   display: flex;
   flex: none;
   color: var(--color-white);
+  transition:
+    opacity var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
 }
 
 .iconButton:last-child {
   color: var(--color-cream);
+}
+
+.iconButton:hover {
+  opacity: 0.8;
+}
+
+.iconButton:active {
+  scale: var(--press-scale);
+}
+
+/* Keyed on the icon's name, so it plays each time play and pause swap. */
+.glyph {
+  animation: icon-in var(--dur) var(--ease-out);
+}
+
+[data-state='loading'] > .glyph {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes icon-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .progress {
@@ -144,6 +190,7 @@
   border-radius: 50%;
   background: var(--color-cream);
   appearance: none;
+  transition: scale var(--dur-fast) var(--ease);
 }
 
 .progress::-moz-range-thumb {
@@ -152,6 +199,16 @@
   border: 0;
   border-radius: 50%;
   background: var(--color-cream);
+  transition: scale var(--dur-fast) var(--ease);
+}
+
+/* The thumb swells under the pointer or keyboard, so it reads as something to grab. */
+.progress:is(:hover, :focus-visible):not(:disabled)::-webkit-slider-thumb {
+  scale: 1.5;
+}
+
+.progress:is(:hover, :focus-visible):not(:disabled)::-moz-range-thumb {
+  scale: 1.5;
 }
 
 .time {
@@ -181,12 +238,17 @@
   color: var(--color-muted);
   transition:
     border-color var(--dur-fast) var(--ease),
-    color var(--dur-fast) var(--ease);
+    color var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
 }
 
 .fullscreen:hover {
   border-color: var(--color-muted);
   color: var(--color-cream);
+}
+
+.fullscreen:active {
+  scale: var(--press-scale);
 }
 
 .backdrop {

@@ -42,6 +42,19 @@
 .pagerButton {
   display: flex;
   color: var(--color-ink);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    opacity var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
+}
+
+.pagerButton:hover:not(:disabled) {
+  opacity: 0.7;
+}
+
+.pagerButton:active:not(:disabled) {
+  scale: var(--press-scale);
 }
 
 .pagerButton:disabled {

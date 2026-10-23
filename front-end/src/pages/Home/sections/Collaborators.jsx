@@ -2,6 +2,7 @@ import Marquee from '@/reusable-components/Marquee';
 import SectionHeader from '@/reusable-components/SectionHeader';
 import { COLLABORATORS } from '@/data/collaborators';
 import { HOME_SECTIONS } from '@/data/home';
+import { reveal } from '@/utils/reveal';
 import styles from '../../../stylesheets/Collaborators.module.css';
 
 function LogoCard({ collaborator, hidden }) {
@@ -29,7 +30,7 @@ export default function Collaborators() {
   return (
     <section className={styles.section} aria-labelledby="collaborators-title">
       <SectionHeader id="collaborators-title" title={title} description={description} />
-      <div className={styles.rail}>
+      <div ref={reveal} className={styles.rail}>
         <Marquee
           items={COLLABORATORS}
           getKey={(c) => c.id}

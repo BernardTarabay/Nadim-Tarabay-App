@@ -2,6 +2,7 @@ import Button from '@/reusable-components/Button';
 import SectionHeader from '@/reusable-components/SectionHeader';
 import { PATHS } from '@/config/site';
 import { HOME_SECTIONS } from '@/data/home';
+import { reveal } from '@/utils/reveal';
 import portraitBw from '@/pictures/images/composer-portrait-bw.webp';
 import portrait from '@/pictures/images/composer-portrait.webp';
 import styles from '../../../stylesheets/MeetComposer.module.css';
@@ -18,14 +19,18 @@ export default function MeetComposer() {
       />
       <div className={styles.body}>
         <img
+          ref={reveal}
           className={styles.portrait}
           src={portraitBw}
           alt="Nadim Tarabay leaning against a wall, holding a score"
           loading="lazy"
         />
         <div className={styles.details}>
-          <p className={styles.story}>{story}</p>
+          <p ref={reveal} className={styles.story}>
+            {story}
+          </p>
           <img
+            ref={reveal}
             className={styles.photo}
             src={portrait}
             alt="Portrait of Nadim Tarabay"

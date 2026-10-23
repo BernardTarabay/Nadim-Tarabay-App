@@ -1,5 +1,6 @@
 import Button from '@/reusable-components/Button';
 import { dateParts } from '@/utils/text';
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/PressRow.module.css';
 
 export default function PressRow({ article, to }) {
@@ -8,7 +9,7 @@ export default function PressRow({ article, to }) {
     ? { href: article.url, target: '_blank', rel: 'noopener noreferrer' }
     : { to };
   return (
-    <article className={styles.row}>
+    <article ref={reveal} className={styles.row}>
       <div className={styles.media}>
         <time className={styles.date} dateTime={article.date}>
           <span className={styles.month}>{month}</span>

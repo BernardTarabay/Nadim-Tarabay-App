@@ -1,0 +1,22 @@
+/* Keyed on the icon's name, so it plays each time play and pause swap. */
+.icon {
+  flex: none;
+  animation: icon-in var(--dur) var(--ease-out);
+}
+
+[data-state='loading'] > .icon {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes icon-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+}

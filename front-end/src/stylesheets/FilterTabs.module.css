@@ -13,11 +13,22 @@
   color: var(--color-black);
   transition:
     background-color var(--dur-fast) var(--ease),
-    color var(--dur-fast) var(--ease);
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
 }
 
 .tab:hover {
   background: var(--color-surface);
+}
+
+.tab:active {
+  scale: var(--press-scale);
+}
+
+/* The selected tab has white text, so a currentColor ring would vanish on the white page. */
+.tab:focus-visible {
+  outline-color: var(--color-ink);
 }
 
 .tab[aria-selected='true'] {

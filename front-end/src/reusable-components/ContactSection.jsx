@@ -4,6 +4,7 @@ import Icon from '@/reusable-components/Icon';
 import { CONTACT_LIMITS } from '@shared/contact';
 import { CONTACT, CONTACT_ANCHOR } from '@/config/site';
 import backgroundImage from '@/pictures/images/contact-bg.webp';
+import { reveal } from '@/utils/reveal';
 import { useContactForm } from './useContactForm';
 import styles from '../stylesheets/ContactSection.module.css';
 
@@ -53,7 +54,7 @@ export default function ContactSection() {
         loading="lazy"
         decoding="async"
       />
-      <div className={styles.panel}>
+      <div ref={reveal} className={styles.panel}>
         <header className={styles.intro}>
           <p className={styles.prompt}>Leave your details</p>
           <h2 id="contact-title" className={styles.title}>

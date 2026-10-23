@@ -39,14 +39,14 @@ export default function MobileMenu({ id, items, open, onClose }) {
               >
                 {item.to && (
                   <li>
-                    <Link to={item.to} className={styles.mobileLink}>
+                    <Link to={item.to} className={styles.mobileLink} viewTransition>
                       All {item.label}
                     </Link>
                   </li>
                 )}
                 {item.children.map((child) => (
                   <li key={child.label}>
-                    <Link to={child.to} className={styles.mobileLink}>
+                    <Link to={child.to} className={styles.mobileLink} viewTransition>
                       {child.label}
                     </Link>
                   </li>
@@ -58,6 +58,7 @@ export default function MobileMenu({ id, items, open, onClose }) {
               key={item.label}
               to={item.to}
               className={`${styles.mobileLink} ${styles.mobileTopLink}`}
+              viewTransition
             >
               {item.label}
             </Link>

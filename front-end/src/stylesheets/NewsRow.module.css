@@ -50,6 +50,14 @@
   line-height: 44px;
 }
 
+.link {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color var(--dur-fast) var(--ease);
+}
+
 .link::after {
   content: '';
   position: absolute;
@@ -65,10 +73,8 @@
   outline-offset: 4px;
 }
 
-.row:hover .title {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
+.row:hover .link {
+  text-decoration-color: currentColor;
 }
 
 .excerpt {

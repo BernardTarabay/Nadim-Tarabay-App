@@ -2,6 +2,7 @@ import Picture from '@/reusable-components/Picture';
 import Polaroid from '@/reusable-components/Polaroid';
 import Prose from '@/reusable-components/Prose';
 import { ABOUT } from '@/data/about';
+import { reveal } from '@/utils/reveal';
 import styles from '../../stylesheets/AboutPage.module.css';
 
 export default function AboutPage() {
@@ -18,7 +19,7 @@ export default function AboutPage() {
       </header>
 
       <section className={styles.band} aria-labelledby="about-intro">
-        <div className={`l-container ${styles.intro}`}>
+        <div ref={reveal} className={`l-container ${styles.intro}`}>
           <Prose
             paragraphs={intro.paragraphs}
             className={`${styles.introText} ${styles.trailingLine}`}
@@ -30,7 +31,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={`l-container ${styles.impact}`} aria-labelledby="about-impact">
+      <section
+        ref={reveal}
+        className={`l-container ${styles.impact}`}
+        aria-labelledby="about-impact"
+      >
         <h2 id="about-impact" className={styles.title}>
           {impact.title}
         </h2>
@@ -47,7 +52,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={`l-container ${styles.podcast}`} aria-labelledby="about-podcast">
+      <section
+        ref={reveal}
+        className={`l-container ${styles.podcast}`}
+        aria-labelledby="about-podcast"
+      >
         <h2 id="about-podcast" className={styles.title}>
           {podcast.title}
         </h2>
@@ -60,7 +69,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <ul className={styles.strip} aria-label="Photos">
+      <ul ref={reveal} className={styles.strip} aria-label="Photos">
         {strip.map((picture) => (
           <li key={picture.src}>
             <Picture {...picture} />

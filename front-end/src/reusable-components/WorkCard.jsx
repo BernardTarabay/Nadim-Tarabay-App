@@ -2,12 +2,13 @@ import PlayButton from '@/reusable-components/PlayButton';
 import Button from '@/reusable-components/Button';
 import Icon from '@/reusable-components/Icon';
 import WorkTitle from '@/reusable-components/WorkTitle';
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/WorkCard.module.css';
 
 export default function WorkCard({ work, onViewScore }) {
   const position = work.coverPosition ?? {};
   return (
-    <article className={styles.card} aria-labelledby={`work-${work.id}`}>
+    <article ref={reveal} className={styles.card} aria-labelledby={`work-${work.id}`}>
       {work.cover && (
         <div className={`${styles.cover} ${work.coverIsTitlePage ? styles.titlePage : ''}`}>
           <img

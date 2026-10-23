@@ -21,10 +21,15 @@
   max-width: 100%;
   height: auto;
   object-fit: contain;
+  transition: scale var(--dur) var(--ease);
 }
 
 a.card:hover {
   border-color: var(--color-black);
+}
+
+a.card:hover img {
+  scale: 1.04;
 }
 
 .rail {

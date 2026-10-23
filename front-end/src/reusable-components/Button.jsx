@@ -16,7 +16,7 @@ export default function Button({
     .join(' ');
   if (to) {
     return (
-      <Link to={to} className={cls} {...rest}>
+      <Link to={to} className={cls} viewTransition {...rest}>
         {children}
       </Link>
     );

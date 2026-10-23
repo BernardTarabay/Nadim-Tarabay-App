@@ -6,7 +6,7 @@
   place-items: center;
   padding: 24px;
   background: rgb(0 0 0 / 0.5);
-  animation: fade-in var(--dur) var(--ease);
+  animation: fade-in var(--dur) var(--ease-out);
 }
 
 .dialog {
@@ -31,7 +31,7 @@
   background: #151210;
   box-shadow: 0 16px 32px rgb(0 0 0 / 0.3);
   touch-action: pan-y;
-  animation: rise var(--dur) var(--ease);
+  animation: rise var(--dur-slow) var(--ease-out);
 }
 
 .binding {
@@ -127,11 +127,18 @@
   display: flex;
   border-radius: 50%;
   color: #141b34;
-  transition: transform var(--dur-fast) var(--ease);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
 }
 
 .close:hover {
   transform: scale(1.06);
+}
+
+.close:active,
+.nav:active:not(:disabled) {
+  scale: var(--press-scale);
 }
 
 .nav {
@@ -144,7 +151,10 @@
   border-radius: 50%;
   background: rgb(255 255 255 / 0.12);
   color: var(--color-white);
-  transition: background-color var(--dur-fast) var(--ease);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    opacity var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
 }
 
 .nav:hover:not(:disabled) {

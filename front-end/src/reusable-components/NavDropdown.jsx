@@ -21,14 +21,14 @@ export default function NavDropdown({ id, item, open, focusFirst, onFocused }) {
       <ul className={styles.dropdownLinks}>
         {item.to && (
           <li>
-            <Link to={item.to} className={styles.dropdownLink}>
+            <Link to={item.to} className={styles.dropdownLink} viewTransition>
               All {item.label}
             </Link>
           </li>
         )}
         {item.children.map((child) => (
           <li key={child.label}>
-            <Link to={child.to} className={styles.dropdownLink}>
+            <Link to={child.to} className={styles.dropdownLink} viewTransition>
               {child.label}
             </Link>
           </li>

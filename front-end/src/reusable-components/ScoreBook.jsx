@@ -1,9 +1,10 @@
 import Icon from '@/reusable-components/Icon';
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/ScoreBook.module.css';
 
 export default function ScoreBook({ score, selected, onSelect }) {
   return (
-    <article className={`${styles.book} ${selected ? styles.selected : ''}`}>
+    <article ref={reveal} className={`${styles.book} ${selected ? styles.selected : ''}`}>
       <div className={styles.stage}>
         <img className={styles.cover} src={score.score.cover} alt="" loading="lazy" />
         <Icon name="play-circle" size={32} className={styles.play} />

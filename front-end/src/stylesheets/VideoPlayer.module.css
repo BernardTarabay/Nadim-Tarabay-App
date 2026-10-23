@@ -29,7 +29,13 @@
   opacity: 0.8;
   transition:
     opacity var(--dur) var(--ease),
-    transform 600ms var(--ease);
+    transform var(--dur-slow) var(--ease);
+}
+
+/* Drawn inside the frame: some frames clip their overflow, which would hide an outer ring. */
+.poster:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: -6px;
 }
 
 .poster::after {
@@ -57,7 +63,12 @@
   transform: translate(-50%, -50%);
   transition:
     background var(--dur) var(--ease),
-    transform var(--dur) var(--ease);
+    transform var(--dur) var(--ease),
+    scale var(--dur-fast) var(--ease);
+}
+
+.poster:active .play {
+  scale: var(--press-scale);
 }
 
 .poster:hover .posterImage,

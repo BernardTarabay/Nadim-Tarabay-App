@@ -9,8 +9,14 @@
   white-space: nowrap;
   transition:
     background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
     color var(--dur-fast) var(--ease),
-    opacity var(--dur-fast) var(--ease);
+    opacity var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
+}
+
+.button:active:not(:disabled, [aria-disabled='true']) {
+  scale: var(--press-scale);
 }
 
 .button:disabled,
@@ -59,6 +65,17 @@
 .outline:hover:not(:disabled) {
   background: var(--color-ink);
   color: var(--color-white);
+}
+
+/* The focus ring takes the button's own fill: each variant already sits on a surface it stands out from
+   (light buttons on dark sections, dark and outline ones on white), so the ring does too. */
+.light:focus-visible {
+  outline-color: var(--color-white);
+}
+
+.dark:focus-visible,
+.outline:focus-visible {
+  outline-color: var(--color-ink);
 }
 
 .block {

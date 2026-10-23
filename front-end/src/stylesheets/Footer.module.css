@@ -70,12 +70,17 @@
   color: var(--color-black);
   transition:
     background-color var(--dur-fast) var(--ease),
-    color var(--dur-fast) var(--ease);
+    color var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
 }
 
 a.chip:hover {
   background: var(--color-black);
   color: var(--color-white);
+}
+
+a.chip:active {
+  scale: var(--press-scale);
 }
 
 .pages {
@@ -96,11 +101,14 @@ a.chip:hover {
   font-size: 18px;
   line-height: 24px;
   color: var(--color-black);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--dur-fast) var(--ease);
 }
 
 .pageLink:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration-color: currentColor;
 }
 
 .copyright {

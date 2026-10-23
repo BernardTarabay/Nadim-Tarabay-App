@@ -1,6 +1,7 @@
 import ContactButton from '@/reusable-components/ContactButton';
 import { CREDITS } from '@/data/credits';
 import { HOME_SECTIONS } from '@/data/home';
+import { reveal } from '@/utils/reveal';
 import styles from '../../../stylesheets/RecentCredits.module.css';
 
 const COLUMNS = [
@@ -12,10 +13,10 @@ const COLUMNS = [
 export default function RecentCredits() {
   return (
     <section className={styles.section} aria-labelledby="credits-title">
-      <h2 id="credits-title" className={styles.title}>
+      <h2 ref={reveal} id="credits-title" className={styles.title}>
         {HOME_SECTIONS.credits.title}
       </h2>
-      <table className={styles.table}>
+      <table ref={reveal} className={styles.table}>
         <thead>
           <tr>
             <th scope="col">Project</th>

@@ -16,6 +16,7 @@ function Transport({ track, title }) {
   const current = isCurrent ? progress.currentTime : 0;
   const duration = isCurrent ? progress.duration : NaN;
   const percent = Number.isFinite(duration) && duration > 0 ? (current / duration) * 100 : 0;
+  const icon = state === 'playing' ? 'pause-circle' : 'play-circle';
 
   return (
     <div className={styles.transport}>
@@ -24,9 +25,10 @@ function Transport({ track, title }) {
         className={styles.iconButton}
         onClick={toggle}
         data-audio-control
+        data-state={state}
         aria-label={`${state === 'playing' ? 'Pause' : 'Play'} ${title}`}
       >
-        <Icon name={state === 'playing' ? 'pause-circle' : 'play-circle'} size={24} />
+        <Icon key={icon} name={icon} size={24} className={styles.glyph} />
       </button>
       <input
         type="range"

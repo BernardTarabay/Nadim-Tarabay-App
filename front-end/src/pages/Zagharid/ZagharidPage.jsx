@@ -8,6 +8,7 @@ import Polaroid from '@/reusable-components/Polaroid';
 import Prose from '@/reusable-components/Prose';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { ZAGHARID } from '@/data/zagharid';
+import { reveal } from '@/utils/reveal';
 import styles from '../../stylesheets/ZagharidPage.module.css';
 
 export default function ZagharidPage() {
@@ -21,7 +22,7 @@ export default function ZagharidPage() {
       </PageHero>
 
       <div className={`l-container ${styles.page}`}>
-        <section id="about" className={styles.story} aria-labelledby="zagharid-story">
+        <section ref={reveal} id="about" className={styles.story} aria-labelledby="zagharid-story">
           <h2 id="zagharid-story" className={styles.title}>
             {story.title}
           </h2>
@@ -32,7 +33,11 @@ export default function ZagharidPage() {
           </div>
         </section>
 
-        <section className={styles.conversations} aria-labelledby="zagharid-conversations">
+        <section
+          ref={reveal}
+          className={styles.conversations}
+          aria-labelledby="zagharid-conversations"
+        >
           <div className={styles.conversationsIntro}>
             <h2 id="zagharid-conversations" className={styles.title}>
               {conversations.title}
@@ -64,7 +69,7 @@ export default function ZagharidPage() {
           description="Every conversation, in the order it was released. Press play to watch here, or open an episode on YouTube."
         />
 
-        <section className={styles.person} aria-labelledby="zagharid-person">
+        <section ref={reveal} className={styles.person} aria-labelledby="zagharid-person">
           <div className={styles.personRow}>
             <div className={styles.personText}>
               <h2 id="zagharid-person" className={styles.title}>
@@ -76,7 +81,7 @@ export default function ZagharidPage() {
           </div>
         </section>
 
-        <section className={styles.cta} aria-labelledby="zagharid-cta">
+        <section ref={reveal} className={styles.cta} aria-labelledby="zagharid-cta">
           <img className={styles.ctaBackdrop} src={cta.background} alt="" loading="lazy" />
           <img className={styles.ctaLogo} src={logo.src} alt={logo.alt} loading="lazy" />
           <h2 id="zagharid-cta" className={styles.ctaTitle}>

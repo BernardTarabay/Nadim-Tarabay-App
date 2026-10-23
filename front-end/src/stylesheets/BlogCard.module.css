@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -6,6 +7,20 @@
   padding: 20px 20px 40px;
   background: var(--color-white);
   box-shadow: var(--shadow-card);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--shadow-card-hover);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.card:is(:hover, :has(:focus-visible))::after {
+  opacity: 1;
 }
 
 .image {

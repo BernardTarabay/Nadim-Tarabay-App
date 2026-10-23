@@ -1,8 +1,9 @@
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/SectionHeader.module.css';
 
 export default function SectionHeader({ id, title, description, className = '', children }) {
   return (
-    <header className={`${styles.header} ${className}`}>
+    <header ref={reveal} className={`${styles.header} ${className}`}>
       <h2 id={id} className={styles.title}>
         {title}
       </h2>

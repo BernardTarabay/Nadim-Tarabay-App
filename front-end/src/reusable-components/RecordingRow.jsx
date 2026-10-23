@@ -1,11 +1,12 @@
 import PlayButton from '@/reusable-components/PlayButton';
 import WorkTitle from '@/reusable-components/WorkTitle';
 import { formatTime } from '@/utils/text';
+import { reveal } from '@/utils/reveal';
 import styles from '../stylesheets/RecordingRow.module.css';
 
 export default function RecordingRow({ recording }) {
   return (
-    <li className={styles.row}>
+    <li ref={reveal} className={styles.row}>
       <span className={styles.title}>
         <WorkTitle title={recording.title} titleAr={recording.titleAr} year={recording.year} />
       </span>
