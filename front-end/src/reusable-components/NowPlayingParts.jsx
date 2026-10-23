@@ -8,7 +8,6 @@ const STATUS_LABEL = {
   playing: 'Now playing',
   paused: 'Paused',
   blocked: 'Sound is off',
-  limited: 'Preview ended',
   error: 'Unavailable',
 };
 
@@ -39,11 +38,12 @@ export function WaveIcon() {
 }
 
 export function TrackLabel() {
-  const { currentTrack, status } = useAudioPlayer();
+  const { currentTrack, status, preview } = useAudioPlayer();
+  const label = status === 'playing' && preview ? 'Now playing (preview)' : STATUS_LABEL[status];
   return (
     <span className={styles.track} aria-live="polite">
-      <span key={STATUS_LABEL[status]} className={styles.status}>
-        {STATUS_LABEL[status]}
+      <span key={label} className={styles.status}>
+        {label}
       </span>{' '}
       <span key={currentTrack?.id} className={styles.title}>
         {currentTrack?.title}

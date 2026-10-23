@@ -8,14 +8,26 @@ export class AudioEngine {
   #audio = null;
   #listeners = new Set();
   #progressListeners = new Set();
-  #state = { currentTrack: null, status: 'idle', isPlaying: false, soundOn: true, muted: false };
+  #state = {
+    currentTrack: null,
+    status: 'idle',
+    isPlaying: false,
+    preview: false,
+    soundOn: true,
+    muted: false,
+  };
   #progress = { currentTime: 0, duration: NaN };
   #userMuted = false;
   #gestureArmed = false;
 
-  constructor(defaultTrack, playlist = []) {
-    this.defaultTrack = defaultTrack;
+  /**
+   * `playlist` is the order tracks play in, starting with the first; tracks listed in
+   * `preview.trackIds` play only their first `preview.seconds` before moving on to the next.
+   */
+  constructor(playlist = [], preview = { seconds: Infinity, trackIds: [] }) {
     this.playlist = playlist;
+    this.defaultTrack = playlist[0];
+    this.preview = { seconds: preview.seconds, trackIds: new Set(preview.trackIds) };
   }
 
   subscribe = (listener) => {
@@ -35,6 +47,7 @@ export class AudioEngine {
   #set(patch) {
     const next = { ...this.#state, ...patch };
     next.isPlaying = next.status === 'playing';
+    next.preview = this.preview.trackIds.has(next.currentTrack?.id);
     this.#state = next;
     this.#listeners.forEach((listener) => listener());
   }
@@ -56,29 +69,23 @@ export class AudioEngine {
     element.addEventListener('playing', () => this.#set({ status: 'playing' }));
     element.addEventListener(
       'pause',
-      () =>
-        !element.ended &&
-        !element.error &&
-        this.#state.status !== 'limited' &&
-        this.#set({ status: 'paused' }),
+      () => !element.ended && !element.error && this.#set({ status: 'paused' }),
     );
     element.addEventListener('ended', this.#playNext);
     element.addEventListener('error', () => this.#set({ status: 'error' }));
     element.addEventListener('timeupdate', () => {
       this.#setProgress();
-      this.#enforceLimit();
+      this.#endPreview();
     });
     element.addEventListener('durationchange', () => this.#setProgress());
     this.#autoplay();
   };
 
-  #enforceLimit() {
-    const { currentTrack, status } = this.#state;
-    if (!currentTrack?.limit || status === 'limited') return;
-    if (this.#audio.currentTime < currentTrack.limit) return;
-    this.#disarmGesture();
-    this.#audio.pause();
-    this.#set({ status: 'limited', soundOn: false });
+  /** A preview track that has played its share moves on, as if it had ended. */
+  #endPreview() {
+    const { preview, status } = this.#state;
+    if (!preview || status !== 'playing') return;
+    if (this.#audio.currentTime >= this.preview.seconds) this.#playNext();
   }
 
   #autoplay() {
@@ -137,9 +144,14 @@ export class AudioEngine {
     }
   }
 
-  play = async (track) => {
+  /** Plays at a visitor's request (counted in the studio's stats). */
+  play = (track) => {
+    trackEvent('play', (track ?? this.#state.currentTrack ?? this.defaultTrack).id);
+    return this.#start(track);
+  };
+
+  async #start(track) {
     const target = track ?? this.#state.currentTrack ?? this.defaultTrack;
-    trackEvent('play', target.id);
     this.#userMuted = false;
     this.#disarmGesture();
     if (target.id !== this.#state.currentTrack?.id || this.#state.status === 'error')
@@ -147,12 +159,12 @@ export class AudioEngine {
     this.#set({ soundOn: true });
     const ok = await this.#tryPlay();
     if (!ok && this.#state.status !== 'error') this.#set({ status: 'paused' });
-  };
+  }
 
   #playNext = () => {
     const index = this.playlist.findIndex((track) => track.id === this.#state.currentTrack?.id);
     const next = this.playlist[(index + 1) % this.playlist.length];
-    if (next) this.play(next);
+    if (next) this.#start(next);
     else this.#set({ status: 'paused' });
   };
 
@@ -164,7 +176,6 @@ export class AudioEngine {
     state.soundOn && (state.status === 'playing' || state.status === 'loading');
 
   toggleSound = () => {
-    if (this.#state.status === 'limited') return;
     if (AudioEngine.isAudible(this.#state)) {
       this.#userMuted = true;
       this.#disarmGesture();

@@ -1,6 +1,5 @@
 import { createContext, useCallback, useMemo, useState, useSyncExternalStore } from 'react';
-import { RECORDINGS } from '@/data/recordings';
-import { DEFAULT_TRACK } from '@/data/tracks';
+import { PLAYLIST, PREVIEW } from '@/data/playlist';
 import { AudioEngine } from './AudioEngine';
 
 export const AudioEngineContext = createContext(null);
@@ -8,13 +7,7 @@ export const AudioEngineContext = createContext(null);
 export const AudioPlayerContext = createContext(null);
 
 export default function AudioProvider({ children }) {
-  const [engine] = useState(
-    () =>
-      new AudioEngine(
-        DEFAULT_TRACK,
-        RECORDINGS.map((recording) => recording.track),
-      ),
-  );
+  const [engine] = useState(() => new AudioEngine(PLAYLIST, PREVIEW));
   const state = useSyncExternalStore(engine.subscribe, engine.getState);
   const attachAudio = useCallback((element) => engine.attach(element), [engine]);
 

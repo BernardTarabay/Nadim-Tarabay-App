@@ -1,6 +1,5 @@
 import { ADS } from '@/data/ads';
 import { RECORDINGS } from '@/data/recordings';
-import { DEFAULT_TRACK } from '@/data/tracks';
 import { CATALOGUE } from '@/data/works';
 import { ZAGHARID_EPISODES } from '@/data/zagharidEpisodes';
 
@@ -8,7 +7,6 @@ import { ZAGHARID_EPISODES } from '@/data/zagharidEpisodes';
 const TITLES = new Map([
   ...CATALOGUE.map((work) => [work.id, work.title]),
   ...RECORDINGS.map((recording) => [recording.id, recording.title]),
-  [DEFAULT_TRACK.id, `${DEFAULT_TRACK.title} (${DEFAULT_TRACK.subtitle})`],
   ...ADS.map((ad) => [ad.youtubeId, `${ad.title} (${ad.kind})`]),
   ...ZAGHARID_EPISODES.map((episode) => [episode.youtubeId, `Zagharid: ${episode.title}`]),
 ]);
