@@ -12,8 +12,8 @@ const clamp = (speed) => Math.min(Math.max(speed, -MAX_SPEED), MAX_SPEED);
 /**
  * Drifts the track to the right, and lets visitors push it along: scrolling over it speeds it up
  * (down or right pushes it right), and dragging moves it by hand, with a fling that coasts. Either
- * way it then eases back to the drift. Hovering or focusing it stops the drift so a logo is easy
- * to click. Returns a cleanup function.
+ * way it then eases back to the drift. Hovering it, or tabbing into it, stops the drift so a logo
+ * is easy to reach. Returns a cleanup function.
  */
 function drive(viewport, track, duration) {
   const list = track.firstElementChild;
@@ -107,7 +107,8 @@ function drive(viewport, track, duration) {
     ['dragstart', (event) => event.preventDefault()],
     ['pointerenter', () => (hovered = true)],
     ['pointerleave', () => (hovered = false)],
-    ['focusin', () => (focused = true)],
+    // Only keyboard focus holds the strip still; the focus a mouse click leaves behind doesn't.
+    ['focusin', (event) => (focused = event.target.matches(':focus-visible'))],
     ['focusout', (event) => (focused = viewport.contains(event.relatedTarget))],
   ];
   listeners.forEach(([type, listener, options]) =>
