@@ -64,6 +64,7 @@ export const CONTENT = {
       output: group('Musical Output', {
         title: text('Title', 80),
         description: paragraph('Description', 400),
+        cta: text('Button to the Scores page', 40),
       }),
       composer: group('Meet the Composer', {
         title: text('Title', 80),

@@ -6,12 +6,6 @@ import chevalCover from '@/pictures/works/cheval-d-ebene.webp';
 import maroniteCover from '@/pictures/works/maronite-mass.webp';
 import sinfoniettaCover from '@/pictures/works/sinfonietta-en-spirale.webp';
 
-export const WORK_CATEGORIES = [
-  { id: 'orchestra', label: 'Orchestra' },
-  { id: 'instrumental', label: 'Instrumental' },
-  { id: 'theater', label: 'Theater' },
-];
-
 const picture = (glob) => (path) => glob[`/src/pictures/scores/${path}.webp`];
 const scoreCover = picture(
   import.meta.glob('@/pictures/scores/covers/*.webp', { eager: true, import: 'default' }),
@@ -75,7 +69,6 @@ export const WORKS = [
     instrumentation: 'Symphony for mixed orchestra and choir',
     audio: 'm4a',
     seconds: 1574,
-    category: 'orchestra',
     description:
       'Written for the inaugural season of the UAE National Orchestra, The Beginning is a large-scale symphony for orchestra and choir. It draws on Emirati culture, history and landscape, setting Arabic instruments within a contemporary symphonic language.',
     commission: 'Commissioned by the UAE National Orchestra (UAENO)',
@@ -89,7 +82,6 @@ export const WORKS = [
     instrumentation: 'Symphonic poem for mixed orchestra, choir and narrator',
     audio: 'mp3',
     seconds: 3759,
-    category: 'orchestra',
     description:
       'A symphonic poem on the poetry of the Sufi mystic Ibn ‘Arabi. It moves through seven poems, each spoken by a narrator and answered by choir and orchestra, with oud, nay and qanun in dialogue with Western instruments.',
     commission: 'Commissioned by the UAE National Orchestra (UAENO)',
@@ -101,7 +93,6 @@ export const WORKS = [
     year: 2026,
     family: 'orchestral',
     instrumentation: 'Oratorio for string orchestra, piano, percussion, choir and soloists',
-    category: 'orchestra',
     titleAr: 'الكلمة صار جسدًا',
     description:
       'An oratorio of around 85 minutes for soloists, choir and string orchestra, sung in Arabic and Syriac. It sets texts from the Gospels and the Prophets, and takes some Maronite chants as source material within an entirely new composition.',
@@ -118,7 +109,6 @@ export const WORKS = [
       'Programme music for chamber orchestra, mixed soloists and singer; music by Keyvan Chemirani, orchestration and arrangement by Nadim Tarabay',
     audio: 'mp3',
     seconds: 4164,
-    category: 'orchestra',
     description:
       'A family concert based on the One Thousand and One Nights tale of the flying ebony horse, combining narration, song and shadow theatre. It was premiered by the Orchestre de chambre de Paris at the Cité de la musique in October 2025.',
     commission: 'Commissioned by the Philharmonie de Paris',
@@ -132,7 +122,6 @@ export const WORKS = [
     instrumentation: 'Mass-oratorio for large orchestra, choir and soloists',
     audio: 'mp3',
     seconds: 2541,
-    category: 'orchestra',
     description: '',
     commission: 'Commissioned by the Lebanese National Higher Conservatory of Music',
     cover: maroniteCover,
@@ -146,7 +135,6 @@ export const WORKS = [
     instrumentation: 'Sinfonietta for chamber orchestra',
     audio: 'mp3',
     seconds: 659,
-    category: 'orchestra',
     description: '',
     commission:
       'Awarded Second Prize in the orchestral category of the Abu Dhabi International Competition for Composers 2026.',
@@ -161,7 +149,6 @@ export const WORKS = [
     instrumentation: 'Vocal work for singer and ensemble',
     audio: 'm4a',
     seconds: 606,
-    category: 'instrumental',
     description:
       'Dust. Set to a text by the composer’s father, the piece draws on the art of Qur’anic recitation (tajwīd) heard in the call to prayer. It explores micro-time, treating the voice and ensemble as a single speck of dust held still and examined in slow motion.',
     commission: 'Commissioned by Ensemble Dynamique, Paris',
@@ -174,7 +161,6 @@ export const WORKS = [
     instrumentation: 'Ensemble work for large ensemble',
     audio: 'm4a',
     seconds: 443,
-    category: 'instrumental',
     description:
       'A study of energy structures and micro-delays. Gestures pass between ten players with tiny offsets in time, so that one idea is heard as an impulse, a body of sound, and its own echo.',
     commission:
@@ -188,7 +174,6 @@ export const WORKS = [
     instrumentation: 'Ensemble work for seven instruments, Ensemble intercontemporain',
     audio: 'm4a',
     seconds: 679,
-    category: 'instrumental',
     description: '',
     commission:
       'Composed for the Conservatoire national supérieur de musique et de danse de Paris (CNSMDP)',
@@ -201,7 +186,6 @@ export const WORKS = [
     instrumentation: 'Orchestral work for chamber orchestra',
     audio: 'mp3',
     seconds: 862,
-    category: 'instrumental',
     description:
       'In the Night Before the Passion. Variations on the Maronite hymn of the same name, extended through prolation canons and self-similar growth, with harmonisation techniques derived from the maqam. Awarded the Prix du Conservatoire de Paris in 2026.',
     commission:
@@ -215,7 +199,6 @@ export const WORKS = [
     instrumentation: 'Chamber work for woodwind quartet',
     audio: 'mp3',
     seconds: 551,
-    category: 'instrumental',
     description:
       'A Swing in Front of the Church. A deconstruction of the Lebanese folk song Al ʿĀyn Mulayyatayn. The melody is taken apart and rebuilt through extended techniques for the four wind players.',
     commission: 'Commissioned by the D440 Festival',
@@ -228,7 +211,6 @@ export const WORKS = [
     instrumentation: 'Choral work for choir and string quartet',
     audio: 'mp3',
     seconds: 320,
-    category: 'instrumental',
     description:
       'A work for twelve voices and string quartet on an invented text, contemplating deep torment and isolation.',
     commission:
@@ -242,14 +224,12 @@ export const WORKS = [
     family: 'stage',
     instrumentation: 'Opera for orchestra and soloists',
     video: 'https://youtu.be/Z1TygKJWhhk',
-    category: 'theater',
     description:
       'A large-scale Arabic opera on the legendary poet-knight Antar and his beloved Abla. This version is fully rewritten, with new orchestration and a reworked dramaturgy. It premiered in December 2025 on an open-air stage at Zayed Sports City, Abu Dhabi.',
     commission: 'Commissioned by Mubadala and Clairmine Opus',
   }),
   definePiece({
     id: 'hamlet-the-mad-prince',
-    category: 'theater',
     title: 'Hamlet the Mad Prince, The Gérard Avedissian Adaptation',
     year: 2019,
     description:
@@ -365,4 +345,14 @@ const MORE_PIECES = [
 
 export const CATALOGUE = [...WORKS, ...MORE_PIECES];
 
-export const worksByCategory = (category) => WORKS.filter((work) => work.category === category);
+/** The six works the home page shows; the rest are on the Scores page. */
+export const HIGHLIGHTS = Object.freeze(
+  [
+    'the-beginning',
+    'echoes-of-time',
+    'the-word-made-flesh',
+    'le-cheval-d-ebene',
+    'maronite-symphonic-mass',
+    'sinfonietta-en-spirale',
+  ].map((id) => WORKS.find((work) => work.id === id)),
+);
