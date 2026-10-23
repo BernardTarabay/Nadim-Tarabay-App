@@ -14,14 +14,16 @@
   gap: var(--marquee-gap);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .track {
-    animation: marquee var(--marquee-duration) linear infinite;
+/* Moved by Marquee.jsx, which visitors can push along by scrolling or dragging. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
+  .viewport {
+    cursor: grab;
+    touch-action: pan-y pinch-zoom;
   }
 
-  .viewport:hover .track,
-  .viewport:focus-within .track {
-    animation-play-state: paused;
+  .dragging {
+    cursor: grabbing;
+    user-select: none;
   }
 }
 
@@ -35,15 +37,6 @@
   }
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(calc(-50% - var(--marquee-gap) / 2));
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
 @media (max-width: 767px) {
   .viewport {
     --marquee-gap: 8px;
@@ -52,7 +45,6 @@
 
   .track {
     width: auto;
-    animation: none;
   }
 
   .list {
