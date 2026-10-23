@@ -8,6 +8,7 @@ const STATUS_LABEL = {
   playing: 'Now playing',
   paused: 'Paused',
   blocked: 'Sound is off',
+  limited: 'Preview ended',
   error: 'Unavailable',
 };
 

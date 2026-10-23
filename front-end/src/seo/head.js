@@ -1,5 +1,6 @@
 import { PATHS, SITE } from '@/config/site';
 import { ABOUT } from '@/data/about';
+import { ADS_PAGE } from '@/data/ads';
 import { BLOG_POSTS, BLOGS_PAGE } from '@/data/blogs';
 import { HOME_HERO } from '@/data/home';
 import { NEWS, NEWS_PAGE } from '@/data/news';
@@ -15,6 +16,7 @@ const PAGES = new Map([
   [PATHS.about, { ...ABOUT.seo, image: ABOUT.hero.image.src }],
   [PATHS.scores, listing(SCORES_PAGE)],
   [PATHS.recordings, listing(RECORDINGS_PAGE)],
+  [PATHS.ads, listing(ADS_PAGE)],
   [PATHS.zagharid, { ...ZAGHARID.seo, image: ZAGHARID.hero.src }],
   [PATHS.news, listing(NEWS_PAGE)],
   [PATHS.pressArticles, listing(PRESS_PAGE)],

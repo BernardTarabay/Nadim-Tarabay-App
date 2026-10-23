@@ -54,14 +54,30 @@ export class AudioEngine {
     element.addEventListener('playing', () => this.#set({ status: 'playing' }));
     element.addEventListener(
       'pause',
-      () => !element.ended && !element.error && this.#set({ status: 'paused' }),
+      () =>
+        !element.ended &&
+        !element.error &&
+        this.#state.status !== 'limited' &&
+        this.#set({ status: 'paused' }),
     );
     element.addEventListener('ended', this.#playNext);
     element.addEventListener('error', () => this.#set({ status: 'error' }));
-    element.addEventListener('timeupdate', () => this.#setProgress());
+    element.addEventListener('timeupdate', () => {
+      this.#setProgress();
+      this.#enforceLimit();
+    });
     element.addEventListener('durationchange', () => this.#setProgress());
     this.#autoplay();
   };
+
+  #enforceLimit() {
+    const { currentTrack, status } = this.#state;
+    if (!currentTrack?.limit || status === 'limited') return;
+    if (this.#audio.currentTime < currentTrack.limit) return;
+    this.#disarmGesture();
+    this.#audio.pause();
+    this.#set({ status: 'limited', soundOn: false });
+  }
 
   #autoplay() {
     this.#load(this.defaultTrack);
@@ -145,6 +161,7 @@ export class AudioEngine {
     state.soundOn && (state.status === 'playing' || state.status === 'loading');
 
   toggleSound = () => {
+    if (this.#state.status === 'limited') return;
     if (AudioEngine.isAudible(this.#state)) {
       this.#userMuted = true;
       this.#disarmGesture();

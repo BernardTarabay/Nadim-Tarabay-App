@@ -129,6 +129,18 @@ export default function ScoreDetailPanel({ score, onClose, onFullscreen }) {
           <Icon name="maximize" size={16} />
           View Fullscreen
         </button>
+
+        {score.video && (
+          <a
+            className={styles.fullscreen}
+            href={score.video}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="youtube" size={16} />
+            Watch on YouTube
+          </a>
+        )}
       </section>
     </>
   );

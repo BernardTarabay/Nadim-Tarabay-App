@@ -3,6 +3,7 @@ export const PATHS = Object.freeze({
   about: '/about',
   scores: '/work/scores',
   recordings: '/work/recordings',
+  ads: '/work/ads',
   zagharid: '/zagharid',
   news: '/news',
   newsArticle: (slug) => `/news/${slug}`,
@@ -30,6 +31,7 @@ export const NAV = [
     children: [
       { label: 'Scores', to: PATHS.scores },
       { label: 'Recordings', to: PATHS.recordings },
+      { label: 'Ads', to: PATHS.ads },
     ],
   },
   {

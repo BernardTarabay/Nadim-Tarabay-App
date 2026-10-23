@@ -35,6 +35,7 @@ export const router = createBrowserRouter([
         handle: { contact: false },
       },
       { path: PATHS.recordings, lazy: page(() => import('@/pages/Recordings/RecordingsPage')) },
+      { path: PATHS.ads, lazy: page(() => import('@/pages/Ads/AdsPage')) },
       { path: PATHS.scores, lazy: page(() => import('@/pages/Scores/ScoresPage')) },
       {
         path: PATHS.zagharid,

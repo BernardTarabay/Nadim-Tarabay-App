@@ -5,5 +5,6 @@ export const DEFAULT_TRACK = Object.freeze({
   title: 'The Beginning',
   subtitle: 'An Emirati Symphony',
   src: audioSrc('the-beginning.m4a'),
-  loop: true,
+  // The background track plays for three minutes; after that visitors pick a piece from Scores.
+  limit: 180,
 });
