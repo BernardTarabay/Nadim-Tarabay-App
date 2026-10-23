@@ -14,7 +14,7 @@ export default function NewsArticlePage() {
 
   return (
     <article className={`l-container ${styles.article}`}>
-      <BackLink to={PATHS.news} label="Back to News" />
+      <BackLink to={PATHS.news} label="Back to Updates" />
       <h1 className={styles.title}>{article.title}</h1>
       <img
         className={styles.image}

@@ -16,9 +16,11 @@ export const CONTACT_ANCHOR = 'contact';
 export const NAV = [
   {
     label: 'News',
-    to: PATHS.news,
     match: ['/news'],
-    children: [{ label: 'Articles', to: PATHS.pressArticles }],
+    children: [
+      { label: 'Updates', to: PATHS.news },
+      { label: 'Articles', to: PATHS.pressArticles },
+    ],
   },
   {
     label: 'Work',
@@ -59,7 +61,7 @@ export const FOOTER = Object.freeze({
     { label: 'Scores', to: PATHS.scores },
     { label: 'Recordings', to: PATHS.recordings },
     { label: 'Zagharid', to: PATHS.zagharid },
-    { label: 'News', to: PATHS.news },
+    { label: 'Updates', to: PATHS.news },
   ],
   copyrightPrefix: '© All rights reserved by',
 });

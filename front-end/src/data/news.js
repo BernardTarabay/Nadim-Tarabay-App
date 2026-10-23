@@ -6,8 +6,8 @@ import usjEmblem from '@/pictures/news/usj-emblem.webp';
 import uaeTour from '@/pictures/news/uae-tour.webp';
 
 export const NEWS_PAGE = Object.freeze({
-  title: 'News',
-  description: 'News from Nadim Tarabay: new works, premieres, tours and Zagharid.',
+  title: 'Updates',
+  description: 'Updates from Nadim Tarabay: new works, premieres, tours and Zagharid.',
   hero: { src: heroImage, mobileSrc: heroMobile, alt: 'A composer writing at a desk under a lamp' },
 });
 
