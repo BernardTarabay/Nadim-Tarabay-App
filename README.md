@@ -31,7 +31,6 @@ messages are printed in the terminal instead of sent.
 - **Scores:** only a sample is published: the title page and first 3 pages as images in
   `front-end/src/pictures/scores/` (`covers/`, `pages/`); later pages show blurred. Page counts are in
   `works.js`. Keep the full PDFs out of `public/`, where anyone could download them.
-- **Blog post text:** `front-end/src/data/blogs.js`.
 
 Pages, titles and link previews come from the same data, so adding an item there is all it takes.
 

@@ -24,16 +24,6 @@ export const router = createBrowserRouter([
         lazy: page(() => import('@/pages/Press/PressArticlePage')),
         handle: { contact: false },
       },
-      {
-        path: PATHS.blogs,
-        lazy: page(() => import('@/pages/Blogs/BlogsPage')),
-        handle: { contact: false },
-      },
-      {
-        path: `${PATHS.blogs}/:slug`,
-        lazy: page(() => import('@/pages/Blogs/BlogPostPage')),
-        handle: { contact: false },
-      },
       { path: PATHS.recordings, lazy: page(() => import('@/pages/Recordings/RecordingsPage')) },
       { path: PATHS.ads, lazy: page(() => import('@/pages/Ads/AdsPage')) },
       { path: PATHS.scores, lazy: page(() => import('@/pages/Scores/ScoresPage')) },

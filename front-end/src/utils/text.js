@@ -14,19 +14,12 @@ export function formatDate(iso, style = 'long') {
     const month = date.toLocaleDateString('en-GB', { month: 'long', timeZone: 'UTC' });
     return `${month} ${ordinal(date.getUTCDate())} ${date.getUTCFullYear()}`;
   }
-  return style === 'long'
-    ? date.toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-        timeZone: 'UTC',
-      })
-    : date.toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        timeZone: 'UTC',
-      });
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
 }
 
 export function dateParts(iso) {

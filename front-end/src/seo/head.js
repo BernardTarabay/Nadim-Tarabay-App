@@ -1,7 +1,6 @@
 import { PATHS, SITE } from '@/config/site';
 import { ABOUT } from '@/data/about';
 import { ADS_PAGE } from '@/data/ads';
-import { BLOG_POSTS, BLOGS_PAGE } from '@/data/blogs';
 import { HOME_HERO } from '@/data/home';
 import { NEWS, NEWS_PAGE } from '@/data/news';
 import { PRESS, PRESS_PAGE } from '@/data/press';
@@ -20,7 +19,6 @@ const PAGES = new Map([
   [PATHS.zagharid, { ...ZAGHARID.seo, image: ZAGHARID.hero.src }],
   [PATHS.news, listing(NEWS_PAGE)],
   [PATHS.pressArticles, listing(PRESS_PAGE)],
-  [PATHS.blogs, listing(BLOGS_PAGE)],
   ...NEWS.map((article) => [
     PATHS.newsArticle(article.slug),
     {
@@ -33,10 +31,6 @@ const PAGES = new Map([
   ...PRESS.map((article) => [
     PATHS.pressArticle(article.slug),
     { title: article.title, description: article.summary, image: article.image, type: 'article' },
-  ]),
-  ...BLOG_POSTS.map((post) => [
-    PATHS.blogPost(post.slug),
-    { title: post.title, description: post.lead.paragraphs[0], image: post.cover, type: 'article' },
   ]),
 ]);
 

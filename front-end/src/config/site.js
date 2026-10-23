@@ -9,8 +9,6 @@ export const PATHS = Object.freeze({
   newsArticle: (slug) => `/news/${slug}`,
   pressArticles: '/news/articles',
   pressArticle: (slug) => `/news/articles/${slug}`,
-  blogs: '/news/blogs',
-  blogPost: (slug) => `/news/blogs/${slug}`,
 });
 
 export const CONTACT_ANCHOR = 'contact';
@@ -20,10 +18,7 @@ export const NAV = [
     label: 'News',
     to: PATHS.news,
     match: ['/news'],
-    children: [
-      { label: 'Articles', to: PATHS.pressArticles },
-      { label: 'Blogs', to: PATHS.blogs },
-    ],
+    children: [{ label: 'Articles', to: PATHS.pressArticles }],
   },
   {
     label: 'Work',
