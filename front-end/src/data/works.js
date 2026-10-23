@@ -199,8 +199,8 @@ export const WORKS = [
     year: 2026,
     family: 'orchestral',
     instrumentation: 'Orchestral work for chamber orchestra',
-    audio: 'm4a',
-    seconds: 819,
+    audio: 'mp3',
+    seconds: 862,
     category: 'instrumental',
     description:
       'In the Night Before the Passion. Variations on the Maronite hymn of the same name, extended through prolation canons and self-similar growth, with harmonisation techniques derived from the maqam. Awarded the Prix du Conservatoire de Paris in 2026.',
