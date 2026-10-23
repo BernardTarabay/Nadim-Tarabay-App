@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, ScrollRestoration, useLocation, useMatches } from 'react-router-dom';
 import MiniPlayer from '@/reusable-components/MiniPlayer';
+import NowPlayingToast from '@/reusable-components/NowPlayingToast';
 import ContactSection from '@/reusable-components/ContactSection';
 import { trackPageview } from '@/analytics/track';
 import { useHashScroll } from '@/hooks/useHashScroll';
@@ -34,6 +35,7 @@ export default function Layout() {
           <MiniPlayer />
         </>
       )}
+      <NowPlayingToast />
       <ScrollRestoration />
     </>
   );

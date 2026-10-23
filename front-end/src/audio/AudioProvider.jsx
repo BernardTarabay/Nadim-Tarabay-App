@@ -16,9 +16,11 @@ export default function AudioProvider({ children }) {
       ...state,
       play: engine.play,
       pause: engine.pause,
+      next: engine.next,
       toggleSound: engine.toggleSound,
       toggleMute: engine.toggleMute,
       seek: engine.seek,
+      previewSeconds: engine.preview.seconds,
     }),
     [state, engine],
   );

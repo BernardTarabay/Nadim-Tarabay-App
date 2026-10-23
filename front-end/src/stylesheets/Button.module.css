@@ -67,6 +67,25 @@
   color: var(--color-white);
 }
 
+/* A link inside running text: no box, just the underline. */
+.text {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  color: var(--color-ink);
+  white-space: normal;
+  text-decoration: underline;
+  text-decoration-color: rgb(14 13 15 / 0.35);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--dur-fast) var(--ease);
+}
+
+.text:hover {
+  text-decoration-color: currentColor;
+}
+
 /* The focus ring takes the button's own fill: each variant already sits on a surface it stands out from
    (light buttons on dark sections, dark and outline ones on white), so the ring does too. */
 .light:focus-visible {
@@ -74,7 +93,8 @@
 }
 
 .dark:focus-visible,
-.outline:focus-visible {
+.outline:focus-visible,
+.text:focus-visible {
   outline-color: var(--color-ink);
 }
 

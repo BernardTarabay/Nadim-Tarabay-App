@@ -8,6 +8,7 @@ export const CONTACT = Object.freeze({
     'Press & media',
     'Collaboration',
     'Score access request',
+    'Recording access request',
     'Other',
   ],
 });

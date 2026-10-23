@@ -98,6 +98,13 @@
   margin-top: 8px;
 }
 
+.length {
+  margin-top: auto;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-muted-strong);
+}
+
 .actions {
   display: flex;
   gap: 8px;

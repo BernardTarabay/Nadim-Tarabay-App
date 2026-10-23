@@ -1,0 +1,302 @@
+/* A macOS-style notification: frosted glass, a soft gradient rim and generous corners. */
+.toast {
+  position: fixed;
+  top: calc(var(--header-h) + 12px);
+  right: min(var(--gutter), 24px);
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 360px;
+  padding: 14px 16px 12px;
+  border-radius: 22px;
+  background: rgb(30 28 33 / 0.88);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow:
+    0 16px 48px rgb(0 0 0 / 0.35),
+    0 2px 8px rgb(0 0 0 / 0.2);
+  color: var(--color-white);
+  transform-origin: top right;
+  /* Hidden: tucked up and away, and out of reach until the next track starts. */
+  opacity: 0;
+  translate: 0 -16px;
+  scale: 0.96;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--dur) var(--ease),
+    translate var(--dur-slow) var(--ease-in-out),
+    scale var(--dur-slow) var(--ease-in-out),
+    visibility 0s linear var(--dur-slow);
+}
+
+.toast[data-open='true'] {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity var(--dur) var(--ease-out),
+    translate var(--dur-slow) var(--ease-out),
+    scale var(--dur-slow) var(--ease-out),
+    visibility 0s;
+}
+
+/* The rim: a 1px ring masked out of a gradient, brighter where light would catch it. */
+.toast::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    155deg,
+    rgb(255 255 255 / 0.5),
+    rgb(255 255 255 / 0.08) 35%,
+    rgb(255 255 255 / 0.04) 65%,
+    rgb(255 255 255 / 0.28)
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.close {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 50%;
+  background: rgb(48 46 52 / 0.92);
+  color: var(--color-white);
+  opacity: 0;
+  scale: 0.8;
+  transition:
+    opacity var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
+}
+
+.toast:is(:hover, :focus-within) .close {
+  opacity: 1;
+  scale: 1;
+}
+
+.close:active {
+  scale: var(--press-scale);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cover {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #2a282d;
+  color: var(--color-muted);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  /* Keyed on the track, so a new one fades in. */
+  animation: text-in var(--dur) var(--ease-out);
+}
+
+@keyframes text-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.label {
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-70);
+}
+
+.title {
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.artist {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-on-dark-70);
+}
+
+.controls {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 2px;
+}
+
+.control {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--color-white);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    scale var(--dur-fast) var(--ease);
+}
+
+.control:hover {
+  background: var(--color-on-dark-10);
+}
+
+.control:active {
+  scale: var(--press-scale);
+}
+
+/* Keyed on the icon's name, so it plays each time play and pause swap. */
+.glyph {
+  animation: icon-in var(--dur) var(--ease-out);
+}
+
+@keyframes icon-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+/* Played, then what is left of a sample, then the part of the work that is on request. */
+.seek {
+  --progress: 0%;
+  --limit: 100%;
+  --track: linear-gradient(
+    to right,
+    var(--color-white) var(--progress),
+    rgb(255 255 255 / 0.32) var(--progress) var(--limit),
+    var(--color-on-dark-10) var(--limit)
+  );
+
+  width: 100%;
+  height: 12px;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+.seek:disabled {
+  cursor: default;
+}
+
+.seek::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--track);
+}
+
+.seek::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--track);
+}
+
+.seek::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-white);
+  appearance: none;
+  scale: 0;
+  transition: scale var(--dur-fast) var(--ease);
+}
+
+.seek::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-white);
+  scale: 0;
+  transition: scale var(--dur-fast) var(--ease);
+}
+
+/* The thumb shows once the bar is within reach, as on Spotify. */
+.toast:hover .seek:not(:disabled)::-webkit-slider-thumb,
+.seek:focus-visible::-webkit-slider-thumb {
+  scale: 1;
+}
+
+.toast:hover .seek:not(:disabled)::-moz-range-thumb,
+.seek:focus-visible::-moz-range-thumb {
+  scale: 1;
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: -6px;
+  font-size: 11px;
+  line-height: 13px;
+  color: var(--color-on-dark-70);
+  font-variant-numeric: tabular-nums;
+}
+
+.limit {
+  color: rgb(255 255 255 / 0.55);
+}
+
+/* Without hover (touch screens), the dismiss button and the thumb are always shown. */
+@media (hover: none) {
+  .close,
+  .seek::-webkit-slider-thumb {
+    opacity: 1;
+    scale: 1;
+  }
+
+  .seek::-moz-range-thumb {
+    scale: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .toast {
+    top: calc(var(--header-h) + 8px);
+    left: var(--gutter);
+    right: var(--gutter);
+    width: auto;
+    transform-origin: top center;
+  }
+}

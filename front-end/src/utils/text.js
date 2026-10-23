@@ -41,3 +41,11 @@ export function formatTime(seconds) {
   const ss = String(whole % 60).padStart(2, '0');
   return hours ? `${hours}:${String(mm).padStart(2, '0')}:${ss}` : `${mm}:${ss}`;
 }
+
+/** A work's length in words: "26 min", or "1 h 3 min" from an hour up. */
+export function formatLength(seconds) {
+  const minutes = Math.round(seconds / 60);
+  if (minutes < 60) return `${minutes} min`;
+  const rest = minutes % 60;
+  return `${Math.floor(minutes / 60)} h${rest ? ` ${rest} min` : ''}`;
+}

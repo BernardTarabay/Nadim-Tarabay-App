@@ -4,8 +4,12 @@ const GESTURES = ['pointerdown', 'pointerup', 'keydown', 'touchend'];
 
 const CONTROL_SELECTOR = '[data-audio-control]';
 
+// A preview fades out over its last seconds instead of stopping abruptly.
+const FADE_SECONDS = 4;
+
 export class AudioEngine {
   #audio = null;
+  #fadeFrame = 0;
   #listeners = new Set();
   #progressListeners = new Set();
   #state = {
@@ -75,6 +79,7 @@ export class AudioEngine {
     element.addEventListener('error', () => this.#set({ status: 'error' }));
     element.addEventListener('timeupdate', () => {
       this.#setProgress();
+      this.#fade();
       this.#endPreview();
     });
     element.addEventListener('durationchange', () => this.#setProgress());
@@ -87,6 +92,25 @@ export class AudioEngine {
     if (!preview || status !== 'playing') return;
     if (this.#audio.currentTime >= this.preview.seconds) this.#playNext();
   }
+
+  /** Sets the volume for the preview fade-out (full volume everywhere else). */
+  #fade = () => {
+    const audio = this.#audio;
+    if (!audio) return;
+    const end = this.preview.seconds;
+    const inFade = this.#state.preview && audio.currentTime >= end - FADE_SECONDS;
+    const volume = inFade ? Math.max(0, (end - audio.currentTime) / FADE_SECONDS) : 1;
+    try {
+      if (audio.volume !== volume) audio.volume = volume;
+    } catch {
+      // Some browsers (iOS Safari) don't let pages set the volume; the preview then just ends.
+    }
+    // timeupdate fires only about four times a second, so steps in between keep the fade smooth.
+    cancelAnimationFrame(this.#fadeFrame);
+    if (inFade && !audio.paused && audio.currentTime < end) {
+      this.#fadeFrame = requestAnimationFrame(this.#fade);
+    }
+  };
 
   #autoplay() {
     this.#load(this.defaultTrack);
@@ -128,6 +152,7 @@ export class AudioEngine {
     audio.src = track.src;
     audio.loop = Boolean(track.loop);
     audio.load();
+    this.#fade();
     this.#progress = { currentTime: 0, duration: NaN };
     this.#set({ currentTrack: track, status: 'loading' });
   }
@@ -161,11 +186,21 @@ export class AudioEngine {
     if (!ok && this.#state.status !== 'error') this.#set({ status: 'paused' });
   }
 
-  #playNext = () => {
+  #nextTrack() {
     const index = this.playlist.findIndex((track) => track.id === this.#state.currentTrack?.id);
-    const next = this.playlist[(index + 1) % this.playlist.length];
+    return this.playlist[(index + 1) % this.playlist.length];
+  }
+
+  #playNext = () => {
+    const next = this.#nextTrack();
     if (next) this.#start(next);
     else this.#set({ status: 'paused' });
+  };
+
+  /** Skips to the next track, at a visitor's request. */
+  next = () => {
+    const next = this.#nextTrack();
+    if (next) this.play(next);
   };
 
   pause = () => {
@@ -192,10 +227,15 @@ export class AudioEngine {
     this.#set({ muted: this.#audio.muted });
   };
 
+  /** The furthest a visitor can seek: a preview stops at the start of its fade-out. */
+  #seekLimit = () =>
+    this.#state.preview ? this.preview.seconds - FADE_SECONDS : (this.#audio?.duration ?? 0);
+
   seek = (seconds) => {
     const audio = this.#audio;
     if (!audio || !Number.isFinite(audio.duration)) return;
-    audio.currentTime = Math.min(Math.max(seconds, 0), audio.duration);
+    audio.currentTime = Math.min(Math.max(seconds, 0), audio.duration, this.#seekLimit());
     this.#setProgress();
+    this.#fade();
   };
 }

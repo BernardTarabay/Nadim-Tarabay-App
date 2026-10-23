@@ -223,7 +223,7 @@ export const WORKS = [
     year: 2025,
     family: 'stage',
     instrumentation: 'Opera for orchestra and soloists',
-    video: 'https://youtu.be/Z1TygKJWhhk',
+    video: { youtubeId: 'Z1TygKJWhhk' },
     description:
       'A large-scale Arabic opera on the legendary poet-knight Antar and his beloved Abla. This version is fully rewritten, with new orchestration and a reworked dramaturgy. It premiered in December 2025 on an open-air stage at Zayed Sports City, Abu Dhabi.',
     commission: 'Commissioned by Mubadala and Clairmine Opus',

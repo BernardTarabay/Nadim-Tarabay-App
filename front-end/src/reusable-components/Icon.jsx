@@ -143,6 +143,21 @@ const ICONS = {
       </g>
     ),
   },
+  'skip-next': {
+    box: 16,
+    body: (
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3 3.5v9L10 8z" />
+        <path d="M12.75 3.5v9" />
+      </g>
+    ),
+  },
   facebook: {
     box: 20,
     body: (

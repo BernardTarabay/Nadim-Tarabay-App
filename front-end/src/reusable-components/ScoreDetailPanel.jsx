@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { usePlayControl } from '@/audio/usePlayControl';
 import { useAudioPlayer, useAudioProgress } from '@/audio/useAudioPlayer';
 import Icon from '@/reusable-components/Icon';
+import VideoPlayer from '@/reusable-components/VideoPlayer';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useModal } from '@/hooks/useModal';
 import { SITE } from '@/config/site';
@@ -10,12 +11,15 @@ import styles from '../stylesheets/ScoreDetailPanel.module.css';
 
 function Transport({ track, title }) {
   const { state, toggle } = usePlayControl(track);
-  const { muted, toggleMute, seek } = useAudioPlayer();
+  const { muted, toggleMute, seek, preview, previewSeconds } = useAudioPlayer();
   const progress = useAudioProgress();
   const isCurrent = state !== 'idle';
   const current = isCurrent ? progress.currentTime : 0;
   const duration = isCurrent ? progress.duration : NaN;
-  const percent = Number.isFinite(duration) && duration > 0 ? (current / duration) * 100 : 0;
+  const known = Number.isFinite(duration) && duration > 0;
+  const percent = known ? (current / duration) * 100 : 0;
+  // A sample lights the bar up to where it ends; seeking stops there.
+  const limit = known && isCurrent && preview ? (previewSeconds / duration) * 100 : percent;
   const icon = state === 'playing' ? 'pause-circle' : 'play-circle';
 
   return (
@@ -41,7 +45,7 @@ function Transport({ track, title }) {
         disabled={!Number.isFinite(duration)}
         aria-label="Seek"
         aria-valuetext={`${formatTime(current)} of ${formatTime(duration)}`}
-        style={{ '--progress': `${percent}%` }}
+        style={{ '--progress': `${percent}%`, '--limit': `${limit}%` }}
         data-audio-control
       />
       <span className={styles.time}>
@@ -107,11 +111,20 @@ export default function ScoreDetailPanel({ score, onClose, onFullscreen }) {
           </p>
         </header>
 
-        <img
-          className={styles.preview}
-          src={score.score.cover}
-          alt={`Title page of the score of ${score.title}`}
-        />
+        {score.video ? (
+          <VideoPlayer
+            compact
+            youtubeId={score.video.youtubeId}
+            title={`${score.title} (video)`}
+            poster={{ src: `https://i.ytimg.com/vi/${score.video.youtubeId}/maxresdefault.jpg` }}
+          />
+        ) : (
+          <img
+            className={styles.preview}
+            src={score.score.cover}
+            alt={`Title page of the score of ${score.title}`}
+          />
+        )}
 
         <div className={styles.credit}>
           <p className={styles.creditTitle}>{score.title}</p>
@@ -131,18 +144,6 @@ export default function ScoreDetailPanel({ score, onClose, onFullscreen }) {
           <Icon name="maximize" size={16} />
           View Fullscreen
         </button>
-
-        {score.video && (
-          <a
-            className={styles.fullscreen}
-            href={score.video}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="youtube" size={16} />
-            Watch on YouTube
-          </a>
-        )}
       </section>
     </>
   );

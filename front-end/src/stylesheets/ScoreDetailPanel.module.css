@@ -169,7 +169,8 @@
   background: linear-gradient(
     to right,
     var(--color-white) var(--progress),
-    #343438 var(--progress)
+    #6b6a70 var(--progress) var(--limit),
+    #343438 var(--limit)
   );
 }
 
@@ -178,7 +179,8 @@
   background: linear-gradient(
     to right,
     var(--color-white) var(--progress),
-    #343438 var(--progress)
+    #6b6a70 var(--progress) var(--limit),
+    #343438 var(--limit)
   );
 }
 
