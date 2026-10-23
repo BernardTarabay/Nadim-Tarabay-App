@@ -1,4 +1,4 @@
-import { PATHS, SITE } from '@/config/site';
+import { PATHS, SHOW_PRESS_ARTICLES, SITE } from '@/config/site';
 import { ABOUT } from '@/data/about';
 import { ADS_PAGE } from '@/data/ads';
 import { HOME_HERO } from '@/data/home';
@@ -18,7 +18,6 @@ const PAGES = new Map([
   [PATHS.ads, listing(ADS_PAGE)],
   [PATHS.zagharid, { ...ZAGHARID.seo, image: ZAGHARID.hero.src }],
   [PATHS.news, listing(NEWS_PAGE)],
-  [PATHS.pressArticles, listing(PRESS_PAGE)],
   ...NEWS.map((article) => [
     PATHS.newsArticle(article.slug),
     {
@@ -28,10 +27,20 @@ const PAGES = new Map([
       type: 'article',
     },
   ]),
-  ...PRESS.map((article) => [
-    PATHS.pressArticle(article.slug),
-    { title: article.title, description: article.summary, image: article.image, type: 'article' },
-  ]),
+  ...(SHOW_PRESS_ARTICLES
+    ? [
+        [PATHS.pressArticles, listing(PRESS_PAGE)],
+        ...PRESS.map((article) => [
+          PATHS.pressArticle(article.slug),
+          {
+            title: article.title,
+            description: article.summary,
+            image: article.image,
+            type: 'article',
+          },
+        ]),
+      ]
+    : []),
 ]);
 
 export const PAGE_PATHS = [...PAGES.keys()];

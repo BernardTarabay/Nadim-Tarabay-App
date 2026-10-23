@@ -15,13 +15,18 @@ export const PATHS = Object.freeze({
 
 export const CONTACT_ANCHOR = 'contact';
 
+// The press Articles pages are hidden for now: off the menu, the sitemap and link previews, and
+// their addresses show the not-found page. The pages and their data are kept; set this to true
+// to bring them back.
+export const SHOW_PRESS_ARTICLES = false;
+
 export const NAV = [
   {
     label: 'News',
     match: ['/news'],
     children: [
       { label: 'Updates', to: PATHS.news },
-      { label: 'Articles', to: PATHS.pressArticles },
+      ...(SHOW_PRESS_ARTICLES ? [{ label: 'Articles', to: PATHS.pressArticles }] : []),
     ],
   },
   {
