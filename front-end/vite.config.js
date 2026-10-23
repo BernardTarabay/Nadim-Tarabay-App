@@ -13,8 +13,22 @@ const devApi = {
   },
 };
 
-export default defineConfig({
-  plugins: [react(), devApi],
+// /studio is its own page (studio.html), kept out of the public site's bundle. Vercel serves it at
+// /studio through cleanUrls; these do the same for `vite` and `vite preview`.
+const toStudio = (req, res, next) => {
+  if (/^\/studio\/?(\?|$)/.test(req.url)) req.url = req.url.replace(/^\/studio\/?/, '/studio.html');
+  next();
+};
+const studioPage = {
+  name: 'studio-page',
+  configureServer: (server) => void server.middlewares.use(toStudio),
+  configurePreviewServer: (server) => void server.middlewares.use(toStudio),
+};
+
+const page = (file) => fileURLToPath(new URL(file, import.meta.url));
+
+export default defineConfig(({ isSsrBuild }) => ({
+  plugins: [react(), devApi, studioPage],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -24,4 +38,8 @@ export default defineConfig({
   css: {
     modules: { localsConvention: 'camelCaseOnly' },
   },
-});
+  // The prerender script's server build has its own single entry (src/seo/head.js).
+  build: isSsrBuild
+    ? {}
+    : { rollupOptions: { input: { main: page('./index.html'), studio: page('./studio.html') } } },
+}));

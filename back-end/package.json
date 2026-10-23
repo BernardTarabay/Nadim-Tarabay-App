@@ -4,7 +4,11 @@
   "type": "module",
   "main": "src/app.js",
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
     "express": "^5.3.0",
     "nodemailer": "^10.2.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8"
   }
 }

@@ -1,3 +1,5 @@
+import siteContent from '@/content/site.json';
+
 export const PATHS = Object.freeze({
   home: '/',
   about: '/about',
@@ -47,14 +49,11 @@ export const SITE = Object.freeze({
 
 export { CONTACT } from '@shared/contact';
 
-export const SOCIAL = [
-  { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/_nadimtarabay/' },
-  { id: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/nadim.tarabay/' },
-  { id: 'soundcloud', label: 'SoundCloud', href: 'https://soundcloud.com/nadim-tarabay' },
-];
+// The footer quote and social links are edited from the studio (shape in shared/content.js).
+export const SOCIAL = siteContent.social;
 
 export const FOOTER = Object.freeze({
-  tagline: '“If music be the food of love, play on.”',
+  tagline: siteContent.footerTagline,
   pages: [
     { label: 'Homepage', to: PATHS.home },
     { label: 'About', to: PATHS.about },

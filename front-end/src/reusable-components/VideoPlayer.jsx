@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AudioEngine } from '@/audio/AudioEngine';
+import { trackEvent } from '@/analytics/track';
 import { useAudioPlayer } from '@/audio/useAudioPlayer';
 import styles from '../stylesheets/VideoPlayer.module.css';
 
@@ -14,6 +15,7 @@ export default function VideoPlayer({ youtubeId, title, poster, compact = false,
   const start = () => {
     // The site's background music would talk over the film.
     if (AudioEngine.isAudible(player)) player.toggleSound();
+    trackEvent('video', youtubeId);
     setPlaying(true);
   };
 

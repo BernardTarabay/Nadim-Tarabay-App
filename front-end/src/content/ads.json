@@ -1,0 +1,27 @@
+{
+  "films": [
+    {
+      "youtubeId": "YkmjllisSGg",
+      "title": "Feel the Symphony Within",
+      "kind": "Campaign film",
+      "subtitle": "UAE National Orchestra",
+      "year": 2025,
+      "description": "A film for the UAE National Orchestra that invites audiences to experience music as more than sound: a presence that lives within us and shapes emotion, memory and meaning. The music is composed by Nadim Tarabay.",
+      "details": [
+        {
+          "term": "Client",
+          "value": "UAE National Orchestra"
+        },
+        {
+          "term": "Music",
+          "value": "Nadim Tarabay"
+        },
+        {
+          "term": "Released",
+          "value": "December 2025"
+        }
+      ],
+      "score": null
+    }
+  ]
+}

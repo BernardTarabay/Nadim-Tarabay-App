@@ -1,0 +1,20 @@
+{
+  "footerTagline": "“If music be the food of love, play on.”",
+  "social": [
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "href": "https://www.instagram.com/_nadimtarabay/"
+    },
+    {
+      "id": "facebook",
+      "label": "Facebook",
+      "href": "https://www.facebook.com/nadim.tarabay/"
+    },
+    {
+      "id": "soundcloud",
+      "label": "SoundCloud",
+      "href": "https://soundcloud.com/nadim-tarabay"
+    }
+  ]
+}

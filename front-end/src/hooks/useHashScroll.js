@@ -5,12 +5,21 @@ const SETTLE_MS = 2500;
 const CHECK_MS = 60;
 const USER_EVENTS = ['wheel', 'touchmove', 'keydown', 'pointerdown'];
 
+// A malformed escape (a link ending in "#%") would throw; such a hash has no target anyway.
+const decodeHash = (hash) => {
+  try {
+    return decodeURIComponent(hash.slice(1));
+  } catch {
+    return '';
+  }
+};
+
 export function useHashScroll() {
   const { hash, key } = useLocation();
 
   useEffect(() => {
-    if (!hash) return undefined;
-    const id = decodeURIComponent(hash.slice(1));
+    const id = decodeHash(hash);
+    if (!id) return undefined;
     const started = performance.now();
     let lastTop = null;
     let timer = 0;

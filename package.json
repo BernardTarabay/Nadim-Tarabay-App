@@ -13,6 +13,7 @@
     "dev": "npm run dev -w front-end",
     "build": "npm run build -w front-end",
     "lint": "npm run lint -w front-end",
+    "seed:analytics": "node back-end/scripts/seed-analytics.js",
     "format": "prettier --write front-end/src back-end shared api"
   }
 }

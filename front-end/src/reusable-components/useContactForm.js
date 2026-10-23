@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { validateContact } from '@shared/contact';
+import { trackEvent } from '@/analytics/track';
 import { submitContact } from '@/api/contact';
 import { ApiError } from '@/api/http';
 import { CONTACT } from '@/config/site';
@@ -70,6 +71,7 @@ export function useContactForm() {
     setServerError('');
     try {
       await submitContact({ ...values, name: values.name.trim(), email: values.email.trim() });
+      trackEvent('contact', values.reason);
       setStatus('success');
       setValues(emptyForm());
       setTouched({});

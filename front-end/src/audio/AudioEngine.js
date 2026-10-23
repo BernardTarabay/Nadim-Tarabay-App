@@ -1,3 +1,5 @@
+import { trackEvent } from '@/analytics/track';
+
 const GESTURES = ['pointerdown', 'pointerup', 'keydown', 'touchend'];
 
 const CONTROL_SELECTOR = '[data-audio-control]';
@@ -137,6 +139,7 @@ export class AudioEngine {
 
   play = async (track) => {
     const target = track ?? this.#state.currentTrack ?? this.defaultTrack;
+    trackEvent('play', target.id);
     this.#userMuted = false;
     this.#disarmGesture();
     if (target.id !== this.#state.currentTrack?.id || this.#state.status === 'error')

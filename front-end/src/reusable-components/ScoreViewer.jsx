@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Icon from '@/reusable-components/Icon';
+import { trackEvent } from '@/analytics/track';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useModal } from '@/hooks/useModal';
 import ContactButton from './ContactButton';
@@ -90,6 +91,7 @@ export default function ScoreViewer({ work, onClose, onLeave = onClose }) {
   const { doc, error } = useScoreDocument(work.score);
   const [first, setFirst] = useState(0);
   useModal(dialogRef, true, onClose);
+  useEffect(() => trackEvent('score', work.id), [work.id]);
 
   const pageCount = doc?.pageCount ?? 0;
   const start = first - (first % perView);

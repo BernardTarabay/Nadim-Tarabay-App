@@ -10,6 +10,10 @@
   color: var(--color-cream);
 }
 
+.standalone {
+  min-height: 100vh;
+}
+
 .code {
   font-weight: 700;
   font-size: 96px;
