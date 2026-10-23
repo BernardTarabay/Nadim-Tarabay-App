@@ -1,30 +1,34 @@
-import poster from '@/pictures/about/antar-stage.webp';
+const youtubePoster = (id) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+
+const poster = {
+  src: youtubePoster('YkmjllisSGg'),
+  alt: 'An orchestra and its conductor on a wood-panelled concert stage',
+};
 
 export const ADS_PAGE = Object.freeze({
   title: 'Ads',
-  description:
-    'Trailers and promotional films for the stage works and productions of Nadim Tarabay, with original music.',
-  hero: { src: poster, alt: 'The Antar and Abla opera on stage' },
+  description: 'Campaign films and trailers with original music by Nadim Tarabay.',
+  hero: poster,
 });
 
 // The first entry is the featured film at the top of the page; the rest fill the grid below it.
+// `score` is optional: the page this film's score lives on, shown as a "View the score" button.
 export const ADS = [
   Object.freeze({
-    id: 'antar-wa-abla-trailer',
-    youtubeId: 'Z1TygKJWhhk',
-    title: 'Antar & Abla',
-    kind: 'Trailer',
-    subtitle: 'Arabic opera',
+    id: 'feel-the-symphony-within',
+    youtubeId: 'YkmjllisSGg',
+    title: 'Feel the Symphony Within',
+    kind: 'Campaign film',
+    subtitle: 'UAE National Orchestra',
     year: 2025,
     description:
-      'The official trailer for Antar and Abla, a large-scale Arabic opera on the legendary poet-knight Antar and his beloved Abla. Nadim Tarabay rewrote the work in full, with new orchestration and a reworked dramaturgy, for its open-air premiere in Abu Dhabi.',
+      'A film for the UAE National Orchestra that invites audiences to experience music as more than sound: a presence that lives within us and shapes emotion, memory and meaning. The music is composed by Nadim Tarabay.',
     details: [
-      ['Work', 'Antar and Abla'],
-      ['Premiere', 'December 2025, Zayed Sports City, Abu Dhabi'],
-      ['Commission', 'Mubadala and Clairmine Opus'],
-      ['Film', 'Amine Hachem'],
+      ['Client', 'UAE National Orchestra'],
+      ['Music', 'Nadim Tarabay'],
+      ['Released', 'December 2025'],
     ],
-    poster: { src: poster, alt: 'The Antar and Abla opera on stage' },
+    poster,
     stills: [],
   }),
 ];

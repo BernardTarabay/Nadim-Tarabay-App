@@ -2,7 +2,6 @@ import Button from '@/reusable-components/Button';
 import SectionHeader from '@/reusable-components/SectionHeader';
 import VideoPlayer from '@/reusable-components/VideoPlayer';
 import { ADS } from '@/data/ads';
-import { PATHS } from '@/config/site';
 import { reveal } from '@/utils/reveal';
 import styles from '../../stylesheets/AdsPage.module.css';
 
@@ -43,9 +42,11 @@ export default function AdsPage() {
               ))}
             </dl>
             <div className={styles.actions}>
-              <Button variant="dark" to={PATHS.scores}>
-                View the score
-              </Button>
+              {featured.score && (
+                <Button variant="dark" to={featured.score}>
+                  View the score
+                </Button>
+              )}
               <Button
                 variant="outline"
                 href={watchUrl(featured.youtubeId)}
