@@ -10,7 +10,36 @@ export const PRESS_PAGE = Object.freeze({
   hero: { src: heroImage, alt: 'An opera house audience seen from the stage' },
 });
 
+const youtubePoster = (id) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+
+/**
+ * Each article links out to its `url`, or, without one, is read in full here: `body` holds its
+ * paragraphs (default: the summary), `credits` its [label, value] rows, and `video` a YouTube
+ * film that replaces the photo at the top of the article.
+ */
 export const PRESS = [
+  {
+    slug: 'feel-the-symphony-within-uae-national-orchestra',
+    title: 'Ad Music: Feel the Symphony Within, UAE National Orchestra',
+    source: '@Nadim',
+    date: '2026-10-23',
+    summary:
+      'Feel the Symphony Within (سيمفونية تلامس قلوبنا) is the national campaign film for the UAE National Orchestra’s first season. Its original music is by composer Nadim Tarabay.',
+    body: [
+      'Feel the Symphony Within (سيمفونية تلامس قلوبنا) is the national campaign film for the UAE National Orchestra’s first season. Its original music is by composer Nadim Tarabay.',
+      'The film rests on one idea: an orchestra is only complete when it meets its audience. It brings the orchestra’s 100 musicians, from 35 nations, together with the people listening to them, in one shared feeling of pride and belonging.',
+      'Tarabay’s score carries that idea from the stage to the audience. It belongs to the same season as his symphony The Beginning, which opened the orchestra’s first concert at Emirates Palace on 15 January 2026.',
+    ],
+    credits: [
+      ['Music', 'Nadim Tarabay'],
+      ['Director', 'Joe Connor'],
+      ['Production', 'electriclime°'],
+      ['Agency', 'C2 Comms'],
+      ['Client', 'UAE National Orchestra'],
+    ],
+    video: { youtubeId: 'YkmjllisSGg', title: 'Feel the Symphony Within, UAE National Orchestra' },
+    image: youtubePoster('YkmjllisSGg'),
+  },
   {
     slug: 'antar-wa-abla-international-stage',
     title: 'Antar wa Abla Reaches the International Stage in Abu Dhabi',

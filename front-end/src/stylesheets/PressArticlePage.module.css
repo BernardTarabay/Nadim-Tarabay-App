@@ -1,0 +1,35 @@
+/* The same detail rows as the Ads page. */
+.credits {
+  display: flex;
+  flex-direction: column;
+  max-width: 590px;
+  border-top: 1px solid var(--color-border);
+}
+
+.credit {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.credit dt {
+  font-weight: 600;
+  color: var(--color-muted-strong);
+}
+
+@media (max-width: 767px) {
+  .credits {
+    max-width: none;
+  }
+
+  .credit {
+    grid-template-columns: 110px 1fr;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

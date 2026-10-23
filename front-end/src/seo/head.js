@@ -1,4 +1,4 @@
-import { PATHS, SHOW_PRESS_ARTICLES, SITE } from '@/config/site';
+import { PATHS, SHOW, SITE } from '@/config/site';
 import { ABOUT } from '@/data/about';
 import { ADS_PAGE } from '@/data/ads';
 import { HOME_HERO } from '@/data/home';
@@ -15,7 +15,7 @@ const PAGES = new Map([
   [PATHS.about, { ...ABOUT.seo, image: ABOUT.hero.image.src }],
   [PATHS.scores, listing(SCORES_PAGE)],
   [PATHS.recordings, listing(RECORDINGS_PAGE)],
-  [PATHS.ads, listing(ADS_PAGE)],
+  ...(SHOW.ads ? [[PATHS.ads, listing(ADS_PAGE)]] : []),
   [PATHS.zagharid, { ...ZAGHARID.seo, image: ZAGHARID.hero.src }],
   [PATHS.news, listing(NEWS_PAGE)],
   ...NEWS.map((article) => [
@@ -27,7 +27,7 @@ const PAGES = new Map([
       type: 'article',
     },
   ]),
-  ...(SHOW_PRESS_ARTICLES
+  ...(SHOW.pressArticles
     ? [
         [PATHS.pressArticles, listing(PRESS_PAGE)],
         ...PRESS.map((article) => [

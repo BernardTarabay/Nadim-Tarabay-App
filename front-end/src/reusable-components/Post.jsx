@@ -26,6 +26,7 @@ function Section({ section }) {
   return section.band ? <div className={styles.band}>{inner}</div> : inner;
 }
 
+/** `lead.media`, when given (a video, say), takes the place of the lead images. */
 export default function Post({ title, back, meta, lead, sections = [], children }) {
   return (
     <article className={styles.post}>
@@ -34,7 +35,7 @@ export default function Post({ title, back, meta, lead, sections = [], children 
         <h1 className={styles.title}>{title}</h1>
         {meta && <p className={styles.meta}>{meta}</p>}
         <div className={styles.leadMedia}>
-          <Gallery images={lead.images} className={styles.leadGallery} />
+          {lead.media ?? <Gallery images={lead.images} className={styles.leadGallery} />}
           <Prose paragraphs={lead.paragraphs} />
         </div>
         {children}

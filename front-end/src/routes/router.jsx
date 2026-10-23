@@ -3,7 +3,7 @@ import Layout from '@/reusable-components/Layout';
 import HomePage from '@/pages/Home/HomePage';
 import ErrorPage from '@/pages/Error/ErrorPage';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
-import { PATHS, SHOW_PRESS_ARTICLES } from '@/config/site';
+import { PATHS, SHOW } from '@/config/site';
 
 const page = (importer) => () => importer().then((module) => ({ Component: module.default }));
 
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
             path: `${PATHS.news}/:slug`,
             lazy: page(() => import('@/pages/News/NewsArticlePage')),
           },
-          ...(SHOW_PRESS_ARTICLES
+          ...(SHOW.pressArticles
             ? [
                 { path: PATHS.pressArticles, lazy: page(() => import('@/pages/Press/PressPage')) },
                 {
@@ -41,7 +41,9 @@ export const router = createBrowserRouter([
             path: PATHS.recordings,
             lazy: page(() => import('@/pages/Recordings/RecordingsPage')),
           },
-          { path: PATHS.ads, lazy: page(() => import('@/pages/Ads/AdsPage')) },
+          ...(SHOW.ads
+            ? [{ path: PATHS.ads, lazy: page(() => import('@/pages/Ads/AdsPage')) }]
+            : []),
           { path: PATHS.scores, lazy: page(() => import('@/pages/Scores/ScoresPage')) },
           {
             path: PATHS.zagharid,
