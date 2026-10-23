@@ -44,19 +44,19 @@ export const ZAGHARID = Object.freeze({
       guest: 'Khaled Mouzanar',
       title: 'Faith, Hope & Music for Cinema',
       image: khaledMouzanar,
-      url: null,
+      url: 'https://www.youtube.com/watch?v=VfORvDNeWzA',
     },
     {
       guest: 'Bushra El-Turk',
       title: 'Improvisation Vs. Notation',
       image: bushraElTurk,
-      url: null,
+      url: 'https://www.youtube.com/watch?v=ivu8Wrr403I',
     },
     {
       guest: 'Marc Hajjar',
       title: 'Revolutionizing Orchestra Concerts',
       image: marcHajjar,
-      url: null,
+      url: 'https://www.youtube.com/watch?v=l1PM_u4P2rg',
     },
   ],
 

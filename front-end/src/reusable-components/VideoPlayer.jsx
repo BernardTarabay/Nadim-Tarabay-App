@@ -7,7 +7,7 @@ const embedUrl = (id) =>
   `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
 
 // A poster with a play button; the YouTube player only loads (and starts) once it is clicked.
-export default function VideoPlayer({ youtubeId, title, poster, className = '' }) {
+export default function VideoPlayer({ youtubeId, title, poster, compact = false, className = '' }) {
   const [playing, setPlaying] = useState(false);
   const player = useAudioPlayer();
 
@@ -18,7 +18,7 @@ export default function VideoPlayer({ youtubeId, title, poster, className = '' }
   };
 
   return (
-    <div className={`${styles.frame} ${className}`}>
+    <div className={`${styles.frame} ${compact ? styles.compact : ''} ${className}`}>
       {playing ? (
         <iframe
           className={styles.embed}

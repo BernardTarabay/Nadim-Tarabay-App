@@ -1,3 +1,4 @@
+import EpisodeArchive from '@/reusable-components/EpisodeArchive';
 import EpisodeCard from '@/reusable-components/EpisodeCard';
 import PageHero from '@/reusable-components/PageHero';
 import Carousel from '@/reusable-components/Carousel';
@@ -56,6 +57,12 @@ export default function ZagharidPage() {
             </div>
           )}
         </section>
+
+        <EpisodeArchive
+          id="zagharid-episodes"
+          title="All Episodes"
+          description="Every conversation, in the order it was released. Press play to watch here, or open an episode on YouTube."
+        />
 
         <section className={styles.person} aria-labelledby="zagharid-person">
           <div className={styles.personRow}>

@@ -72,6 +72,16 @@
   transform: translate(-50%, -50%) scale(1.06);
 }
 
+.compact .play {
+  width: 56px;
+  height: 56px;
+}
+
+.compact .play svg {
+  width: 20px;
+  height: 20px;
+}
+
 @media (max-width: 767px) {
   .play {
     width: 64px;
