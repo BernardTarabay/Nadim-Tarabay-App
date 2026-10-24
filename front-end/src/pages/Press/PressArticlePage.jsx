@@ -19,6 +19,7 @@ export default function PressArticlePage() {
       youtubeId={article.video.youtubeId}
       title={article.video.title}
       poster={{ src: article.image }}
+      external={article.video.external}
     />
   );
   return (

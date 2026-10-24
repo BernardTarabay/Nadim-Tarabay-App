@@ -67,6 +67,24 @@
     scale var(--dur-fast) var(--ease);
 }
 
+/* Tells visitors that an external film leaves the site. */
+.badge {
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: rgb(0 0 0 / 0.55);
+  backdrop-filter: blur(8px);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
 .poster:active .play {
   scale: var(--press-scale);
 }
@@ -102,5 +120,12 @@
   .play svg {
     width: 22px;
     height: 22px;
+  }
+
+  .badge {
+    bottom: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 13px;
   }
 }

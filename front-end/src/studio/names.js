@@ -1,4 +1,5 @@
 import { ADS } from '@/data/ads';
+import { PRESS } from '@/data/press';
 import { RECORDINGS } from '@/data/recordings';
 import { CATALOGUE } from '@/data/works';
 import { ZAGHARID_EPISODES } from '@/data/zagharidEpisodes';
@@ -7,6 +8,10 @@ import { ZAGHARID_EPISODES } from '@/data/zagharidEpisodes';
 const TITLES = new Map([
   ...CATALOGUE.map((work) => [work.id, work.title]),
   ...RECORDINGS.map((recording) => [recording.id, recording.title]),
+  ...PRESS.filter((article) => article.video).map((article) => [
+    article.video.youtubeId,
+    article.video.title,
+  ]),
   ...ADS.map((ad) => [ad.youtubeId, `${ad.title} (${ad.kind})`]),
   ...ZAGHARID_EPISODES.map((episode) => [episode.youtubeId, `Zagharid: ${episode.title}`]),
 ]);
