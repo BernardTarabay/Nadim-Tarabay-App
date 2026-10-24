@@ -352,7 +352,7 @@ export const HIGHLIGHTS = Object.freeze(
     'echoes-of-time',
     'the-word-made-flesh',
     'le-cheval-d-ebene',
-    'maronite-symphonic-mass',
+    'fi-llayli-qablal-alami',
     'sinfonietta-en-spirale',
   ].map((id) => WORKS.find((work) => work.id === id)),
 );
