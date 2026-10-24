@@ -7,17 +7,17 @@
     "upcoming": true
   },
   {
+    "project": "The Beginning, an Emirati Symphony",
+    "role": "Composer",
+    "date": "1/2026",
+    "venue": "UAE National Tour",
+    "upcoming": false
+  },
+  {
     "project": "Fi Llayli Qablal Alami",
     "role": "Composer",
     "date": "9/2026",
     "venue": "Salle Pflimlin CNSMDP",
-    "upcoming": false
-  },
-  {
-    "project": "The Beginning, an Emirati Symphony",
-    "role": "Composer & Conductor",
-    "date": "1/2026",
-    "venue": "UAE National Tour",
     "upcoming": false
   },
   {
