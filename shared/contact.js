@@ -1,5 +1,5 @@
 export const CONTACT = Object.freeze({
-  email: 'nadimtarabay@gmail.com',
+  email: 'nadimtarabaypodcast@gmail.com',
   phonePrefix: '+961',
   reasons: [
     'Compose',
