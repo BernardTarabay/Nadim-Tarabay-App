@@ -1,14 +1,11 @@
 import { HelmetProvider } from 'react-helmet-async';
-import { RouterProvider } from 'react-router-dom';
 import AudioProvider from '@/audio/AudioProvider';
-import { router } from '@/routes/router';
 
-export default function App() {
+/** Everything around the router: main.jsx's browser router, or entry-server.jsx's static one. */
+export default function App({ children }) {
   return (
     <HelmetProvider>
-      <AudioProvider>
-        <RouterProvider router={router} />
-      </AudioProvider>
+      <AudioProvider>{children}</AudioProvider>
     </HelmetProvider>
   );
 }

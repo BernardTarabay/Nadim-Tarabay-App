@@ -18,7 +18,7 @@ Needs Node 20.12 or newer.
 npm install
 npm run dev      # site + API on http://localhost:5173 (restart after editing back-end/)
 npm run lint
-npm run build    # front-end/dist, including one HTML file per page for link previews
+npm run build    # front-end/dist, with every page pre-rendered to its own HTML file
 ```
 
 To send real email locally, copy `.env.example` to `.env` and fill it in. Without it, contact

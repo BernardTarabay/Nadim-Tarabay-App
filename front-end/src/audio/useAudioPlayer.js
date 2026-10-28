@@ -10,5 +10,5 @@ export function useAudioPlayer() {
 export function useAudioProgress() {
   const engine = useContext(AudioEngineContext);
   if (!engine) throw new Error('useAudioProgress must be used inside <AudioProvider>');
-  return useSyncExternalStore(engine.subscribeProgress, engine.getProgress);
+  return useSyncExternalStore(engine.subscribeProgress, engine.getProgress, engine.getProgress);
 }

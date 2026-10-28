@@ -1,4 +1,3 @@
-import { createBrowserRouter } from 'react-router-dom';
 import Layout from '@/reusable-components/Layout';
 import HomePage from '@/pages/Home/HomePage';
 import ErrorPage from '@/pages/Error/ErrorPage';
@@ -7,7 +6,8 @@ import { PATHS, SHOW } from '@/config/site';
 
 const page = (importer) => () => importer().then((module) => ({ Component: module.default }));
 
-export const router = createBrowserRouter([
+// Served by a browser router in main.jsx, and by a static one in entry-server.jsx at build time.
+export const routes = [
   {
     element: <Layout />,
     errorElement: <ErrorPage standalone />,
@@ -55,4 +55,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+];

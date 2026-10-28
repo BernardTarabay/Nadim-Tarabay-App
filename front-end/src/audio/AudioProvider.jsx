@@ -8,7 +8,7 @@ export const AudioPlayerContext = createContext(null);
 
 export default function AudioProvider({ children }) {
   const [engine] = useState(() => new AudioEngine(PLAYLIST, PREVIEW));
-  const state = useSyncExternalStore(engine.subscribe, engine.getState);
+  const state = useSyncExternalStore(engine.subscribe, engine.getState, engine.getState);
   const attachAudio = useCallback((element) => engine.attach(element), [engine]);
 
   const player = useMemo(

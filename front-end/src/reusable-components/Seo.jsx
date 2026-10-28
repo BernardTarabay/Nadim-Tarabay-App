@@ -4,6 +4,8 @@ import { headFor } from '@/seo/head';
 
 export default function Seo() {
   const { pathname } = useLocation();
+  // Pre-rendered pages get these tags in their <head> from scripts/prerender.js.
+  if (import.meta.env.SSR) return null;
   const { title, tags } = headFor(pathname);
   return (
     <Helmet>

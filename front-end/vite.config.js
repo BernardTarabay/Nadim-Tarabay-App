@@ -38,7 +38,7 @@ export default defineConfig(({ isSsrBuild }) => ({
   css: {
     modules: { localsConvention: 'camelCaseOnly' },
   },
-  // The prerender script's server build has its own single entry (src/seo/head.js).
+  // The prerender script's server build has its own single entry (src/entry-server.jsx).
   build: isSsrBuild
     ? {}
     : { rollupOptions: { input: { main: page('./index.html'), studio: page('./studio.html') } } },
