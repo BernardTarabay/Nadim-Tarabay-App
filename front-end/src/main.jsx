@@ -7,6 +7,12 @@ import App from './App';
 
 document.head.querySelectorAll('[data-prerender]').forEach((tag) => tag.remove());
 
+// The Content-Security-Policy (vercel.json) drops style attributes written in the HTML, but not
+// styles set from script, which is how React sets them: apply the pre-rendered page's ones that way.
+document.querySelectorAll('#root [style]').forEach((element) => {
+  element.style.cssText = element.getAttribute('style');
+});
+
 function start() {
   const app = (
     <StrictMode>
