@@ -63,7 +63,7 @@ const definePiece = ({ audio, seconds, ...work }) => {
 export const WORKS = [
   definePiece({
     id: 'the-beginning',
-    title: 'The Beginning — An Emirati Symphony',
+    title: 'The Beginning, An Emirati Symphony',
     year: 2026,
     family: 'orchestral',
     instrumentation: 'Symphony for mixed orchestra and choir',

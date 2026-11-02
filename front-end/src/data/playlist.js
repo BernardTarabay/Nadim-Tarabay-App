@@ -12,8 +12,8 @@ export const PLAYLIST = Object.freeze([
   ...RECORDINGS.map((recording) => recording.track).filter((track) => !HOME_TRACKS.includes(track)),
 ]);
 
-/** The first two home tracks play as 3-minute previews, then the player moves on; the rest play in full. */
+/** All recordings play in full, wherever they are opened on the site. */
 export const PREVIEW = Object.freeze({
-  seconds: 180,
-  trackIds: HOME_TRACKS.slice(0, 2).map((track) => track.id),
+  seconds: Infinity,
+  trackIds: [],
 });

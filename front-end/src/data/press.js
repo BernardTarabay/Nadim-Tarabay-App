@@ -87,7 +87,7 @@ export const PRESS = [
     source: '',
     date: '2026-01-16',
     summary:
-      'The UAE National Orchestra’s Landmark Debut. Tarabay’s The Beginning — An Emirati Symphony closes the inaugural concert, attended by Sheikh Abdullah bin Zayed Al Nahyan.',
+      'The UAE National Orchestra’s Landmark Debut. Tarabay’s The Beginning, An Emirati Symphony closes the inaugural concert, attended by Sheikh Abdullah bin Zayed Al Nahyan.',
     image: emiratesPalace,
     url: 'https://en.aletihad.ae/news/uae/4637703/abdullah-bin-zayed-attends-uae-national-orchestra-s-landmark',
   },
