@@ -6,7 +6,6 @@ import { useModal } from '@/hooks/useModal';
 import { NAV, PATHS, SITE } from '@/config/site';
 import NavDropdown from './NavDropdown';
 import MobileMenu from './MobileMenu';
-import siteLogo from '@/pictures/zagharid/company-logo.webp';
 import styles from '../stylesheets/Header.module.css';
 
 const isCurrent = (item, pathname) =>
@@ -80,13 +79,7 @@ export default function Header() {
     >
       <div className={styles.bar}>
         <Link to={PATHS.home} className={styles.brand} viewTransition>
-          <img
-            className={styles.brandLogo}
-            src={siteLogo}
-            alt={`${SITE.name} home — Zagharid Ltd.`}
-            width={1536}
-            height={725}
-          />
+          {SITE.name}
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Main">

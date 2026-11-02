@@ -265,12 +265,3 @@
 .mobileTopLink {
   font-weight: 600;
 }
-
-/* Preserve the supplied logo's proportions within the desktop and mobile bars. */
-.brandLogo {
-  display: block;
-  width: auto;
-  height: calc(var(--header-h) - 12px);
-  max-width: 160px;
-  object-fit: contain;
-}
